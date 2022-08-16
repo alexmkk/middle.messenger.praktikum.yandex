@@ -1,0 +1,27 @@
+{{> head title="Регистрация" }}
+<div class="wrapper flex-center">
+    <div class="form-wrapper">
+        <form class="form">
+            <h1>Регистрация</h1>
+
+            {{> field title="Логин" name="login" }}
+            {{> field title="Имя" name="first_name" type="text" }}
+            {{> field title="Фамилия" name="second_name" type="text" }}
+            {{> field title="Отображаемое имя" name="display_name" type="text" }}
+            {{> field title="Почта" name="email" type="email" }}
+            {{> field title="Телефон" name="phone" type="tel" }}
+            {{> field title="Аватар" name="avatar" type="file" }}
+            {{> field title="Пароль" name="oldPassword" type="password" }}
+            {{> field title="Повторите пароль" name="newPassword" type="password" }}
+
+            <button type="submit">
+                Регистрация
+            </button>
+
+            <p class="form__help">
+                <a href="/pages/login/login.hbs">Вход</a>
+            </p>
+        </form>
+    </div>
+</div>
+{{> footer }}

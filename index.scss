@@ -1,0 +1,35 @@
+@import "/pages/login/login";
+@import "/pages/404/404";
+@import "/pages/profile/profile";
+
+body {
+  font-family: "Verdana", serif;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+  min-height: 100%;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+.color-red {
+  color: #FF0000;
+}
