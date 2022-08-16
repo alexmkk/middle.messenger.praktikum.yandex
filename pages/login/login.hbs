@@ -4,12 +4,10 @@
         <form class="form">
             <h1>Вход</h1>
 
-            {{> field title="Логин" name="login" type="text" }}
+            {{> field title="Логин" name="login" }}
             {{> field title="Пароль" name="password" type="password" }}
 
-            <button type="submit">
-                Вход
-            </button>
+            {{> button text="Вход" }}
 
             <p class="form__help">
                 <a href="/pages/signin/signin.hbs">Регистрация</a>
