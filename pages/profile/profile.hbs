@@ -1,0 +1,23 @@
+{{> head title="Профиль" }}
+<div class="wrapper flex-center">
+    <div class="profile-content flex-center">
+        <div class="profile-content__avatar flex-center">
+            <div class="avatar-image" title="Изменить аватар"></div>
+            <p class="text-bold">Александр</p>
+        </div>
+        <div class="profile-content__informations">
+            {{> info param="Почта" value="pochta@yandex.ru"}}
+            {{> info param="Логин" value="Ivi"}}
+            {{> info param="Имя" value="Ivan"}}
+            {{> info param="Фамилия" value="Ivanov"}}
+            {{> info param="Имя в чате" value="Ivan1"}}
+            {{> info param="Телефон" value="+7 (909) 967 30 30"}}
+        </div>
+        <div class="profile-content__buttons">
+            <a href="/pages/profile/edit-profile/edit-profile.hbs">Изменить данные</a>
+            <a href="/pages/profile/edit-password/edit-password.hbs">Изменить пароль</a>
+            <a href="/pages/login/login.hbs" class="color-red">Выйти</a>
+        </div>
+    </div>
+</div>
+{{> footer }}
