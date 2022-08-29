@@ -2,7 +2,7 @@
 
 .form-wrapper {
   width: 340px;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
   border-radius: 12px;
   padding: 50px 30px 30px;
   box-sizing: border-box;
@@ -14,17 +14,8 @@
 }
 
 .form {
-  label {
-    p {
-      margin: 0 0 8px;
-      color: variables.$color-gray;
-      font-size: 12px;
-    }
-  }
-
   input {
     width: 100%;
-    outline: none;
     border: none;
     margin-bottom: 16px;
 
@@ -57,5 +48,11 @@
 
   p.form__help {
     text-align: center;
+  }
+
+  span.form-text {
+    margin: 0 0 8px;
+    color: variables.$color-gray;
+    font-size: 12px;
   }
 }

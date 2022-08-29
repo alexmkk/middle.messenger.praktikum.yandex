@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "parcel index.hbs",
     "build": "parcel build index.hbs",
-    "start": "node server.js"
+    "start": "npm run build && node server.js"
   },
   "devDependencies": {
     "@andreyvolokitin/parcel-transformer-handlebars": "^0.0.3",
