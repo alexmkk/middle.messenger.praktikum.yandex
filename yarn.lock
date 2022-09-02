@@ -24,6 +24,11 @@
     handlebars-wax "^6.1.0"
     parcel-bundler "^1.12.3"
 
+"@anikin/parcel-transformer-handlebars-precompile@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@anikin/parcel-transformer-handlebars-precompile/-/parcel-transformer-handlebars-precompile-1.0.1.tgz#1ee3339f2e6e78c17a19ff8b9bfb5a6db4c4ca3d"
+  integrity sha512-UJ5fHr0KZ4qC1olgQkJLHYO+GS29CgIuKNF9ZoT/U/eyLEWHw7+8UOgoiJudgp2tPqpB71d+zbPfTIO6sXee9g==
+
 "@anikin/parcel-transformer-handlebars@^1.0.9":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@anikin/parcel-transformer-handlebars/-/parcel-transformer-handlebars-1.0.9.tgz#222afee9162b918b6551751247f451e7f89ccf74"
@@ -7398,6 +7403,11 @@ typeof-article@^0.1.1:
   dependencies:
     kind-of "^3.1.0"
 
+typescript@^4.8.2:
+  version "4.8.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.2.tgz#e3b33d5ccfb5914e4eeab6699cf208adee3fd790"
+  integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==
+
 uglify-js@^3.1.4:
   version "3.16.3"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.16.3.tgz#94c7a63337ee31227a18d03b8a3041c210fd1f1d"
@@ -7578,6 +7588,11 @@ uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache@^2.0.0:
   version "2.3.0"
