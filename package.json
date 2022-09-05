@@ -8,8 +8,10 @@
     "dev": "parcel index.html",
     "build": "parcel build index.html",
     "start": "npm run build && node server.js",
-    "eslint": "eslint \"**/*.ts\"",
-    "lint": "eslint . --ext .ts"
+    "lint": "yarn run lint:js && yarn run lint:styles",
+    "lint:js": "eslint --ignore-path .gitignore \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:styles": "stylelint --ignore-path .gitignore \"{pages,src,style}/**/*.{css,scss,sass}\"",
+    "lint:fix": "yarn run lint:js --fix && yarn run lint:styles --fix"
   },
   "devDependencies": {
     "@andreyvolokitin/parcel-transformer-handlebars": "^0.0.3",
@@ -27,6 +29,11 @@
     "parcel": "^2.7.0",
     "prettier": "^2.7.1",
     "sass": "^1.54.4",
+    "stylelint": "^14.11.0",
+    "stylelint-config-standard": "^28.0.0",
+    "stylelint-config-standard-scss": "^5.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.3.0",
     "typescript": "^4.8.2"
   },
   "engines": {

@@ -1,3 +1,4 @@
+@use "src/styles/variables";
 @import "pages/Login/login";
 @import "pages/Error/error";
 @import "pages/Profile/profile";
@@ -60,7 +61,7 @@ input {
 }
 
 .color-red {
-  color: #FF0000;
+  color: variables.$color-red;
 }
 
 .input-error {

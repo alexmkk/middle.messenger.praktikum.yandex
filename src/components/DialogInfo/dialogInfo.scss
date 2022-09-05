@@ -1,7 +1,9 @@
+@use "src/styles/variables";
+
 .dialogs__item {
   justify-content: space-between;
   gap: 10px;
-  border-top: 1px solid #EAEAEA;
+  border-top: 1px solid variables.$color-gray-light;
   cursor: pointer;
   padding: 10px;
   max-height: 70px;
@@ -28,7 +30,6 @@
     span {
       font-size: 12px;
     }
-
   }
 
   &__info {
@@ -36,12 +37,12 @@
     justify-content: space-between;
 
     .dialogs__time {
-      color: #999999;
+      color: variables.$color-gray;
       font-size: 11px;
     }
 
     .dialogs__counter {
-      background: #3369F3;
+      background: #3369f3;
       border-radius: 50px;
       text-align: center;
       color: white;
@@ -52,6 +53,6 @@
   }
 
   .preview-message {
-    color: #999999;
+    color: variables.$color-gray;
   }
 }

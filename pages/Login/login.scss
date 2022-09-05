@@ -2,7 +2,7 @@
 
 .form-wrapper {
   width: 340px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
   border-radius: 12px;
   padding: 50px 30px 30px;
   box-sizing: border-box;
@@ -24,12 +24,12 @@
     border: none;
     margin-bottom: 20px;
 
-    &:not([type='file']) {
-      border-bottom: 1px solid variables.$color-gray;;
+    &:not([type="file"]) {
+      border-bottom: 1px solid variables.$color-gray;
     }
 
     &:focus {
-      &:not([type='file']) {
+      &:not([type="file"]) {
         border-bottom: 1px solid variables.$color-primary;
       }
     }

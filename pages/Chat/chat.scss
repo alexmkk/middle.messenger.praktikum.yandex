@@ -11,10 +11,10 @@
 
     &__info {
       text-align: right;
-      padding: 20px 10px 0 10px;
+      padding: 20px 10px 0;
 
       a {
-        color: #999999;
+        color: variables.$color-gray;
         font-size: 12px;
       }
     }
@@ -51,7 +51,7 @@
       width: 35px;
       height: 35px;
       background: #d6d6d6;
-      border-radius: 50px
+      border-radius: 50px;
     }
 
     &__username {
@@ -94,14 +94,14 @@
 
       .left-message {
         max-width: 48%;
-        background: #F8F8F8;
+        background: #f8f8f8;
         border: 1px solid variables.$color-gray-light;
         align-self: flex-start;
       }
 
       .right-message {
         max-width: 48%;
-        background: #E4EDFD;
+        background: #e4edfd;
         align-self: flex-end;
       }
     }
@@ -127,6 +127,7 @@
       }
     }
   }
+
   .page-button {
     cursor: pointer;
     width: 30px;
