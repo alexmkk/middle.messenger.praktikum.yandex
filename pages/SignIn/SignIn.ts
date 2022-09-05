@@ -1,26 +1,26 @@
-import {Block} from "../../src/utils/Block";
+import { Block } from "../../src/utils/Block";
 import template from "./signin.hbs";
-import {getFormData} from "../../src/helpers/getFormData";
+import { getFormData } from "../../src/helpers/getFormData";
 
 interface ISignInPageProps {
-    title: string;
+  title: string;
 }
 
 export class SignInPage extends Block {
-    constructor(props: ISignInPageProps) {
-        super("div", props);
-    }
+  constructor(props: ISignInPageProps) {
+    super("div", props);
+  }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        getFormData();
-    };
+  handleSubmit(e) {
+    e.preventDefault();
+    getFormData();
+  }
 
-    render() {
-        return this.compile(template, {
-            title: this.props.title,
-            children: this.children,
-            onClick: this.handleSubmit,
-        })
-    }
+  render() {
+    return this.compile(template, {
+      title: this.props.title,
+      children: this.children,
+      onClick: this.handleSubmit,
+    });
+  }
 }

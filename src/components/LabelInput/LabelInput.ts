@@ -1,38 +1,38 @@
 import { Block } from "../../utils/Block";
 import template from "./labelInput.hbs";
-import {validate, ValidationFields} from "../../utils/Validate";
+import { validate, ValidationFields } from "../../utils/Validate";
 
 interface ILabelInputProps {
-    label?: string;
-    validation?: ValidationFields;
+  label?: string;
+  validation?: ValidationFields;
 }
 
 export class LabelInput extends Block {
-    constructor({label = "", validation, ...props}: ILabelInputProps) {
-        super("label", {
-            ...props,
-            label,
-            onBlur: (e: FocusEvent) => {
-                const target = e.target as HTMLInputElement;
-                const value = target.value;
+  constructor({ label = "", validation, ...props }: ILabelInputProps) {
+    super("label", {
+      ...props,
+      label,
+      onBlur: (e: FocusEvent) => {
+        const target = e.target as HTMLInputElement;
+        const value = target.value;
 
-                if (validation) {
-                    this.setProps({
-                        error: !validate(value, validation) ? "Невалидное поле" : "",
-                        value,
-                    });
-                }
-            },
-        });
-    }
+        if (validation) {
+          this.setProps({
+            error: !validate(value, validation) ? "Невалидное поле" : "",
+            value,
+          });
+        }
+      },
+    });
+  }
 
-    render() {
-        return this.compile(template, {
-            ...this.props,
-            label: this.props.label,
-            error: this.props.error,
-            children: this.children,
-            onBlur: this.props.onBlur,
-        });
-    }
+  render() {
+    return this.compile(template, {
+      ...this.props,
+      label: this.props.label,
+      error: this.props.error,
+      children: this.children,
+      onBlur: this.props.onBlur,
+    });
+  }
 }

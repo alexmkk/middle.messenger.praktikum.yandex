@@ -1,1 +1,1 @@
-export {DialogInfo as default} from "./DialogInfo";
+export { DialogInfo as default } from "./DialogInfo";
