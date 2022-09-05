@@ -1,26 +1,26 @@
-import {Block} from "../../src/utils/Block";
+import { Block } from "../../src/utils/Block";
 import template from "./profileEditPass.hbs";
-import {getFormData} from "../../src/helpers/getFormData";
+import { getFormData } from "../../src/helpers/getFormData";
 
 interface IProfileEditPassPageProps {
-    title: string;
+  title: string;
 }
 
 export class ProfileEditPassPage extends Block {
-    constructor(props: IProfileEditPassPageProps) {
-        super("div", props);
-    }
+  constructor(props: IProfileEditPassPageProps) {
+    super("div", props);
+  }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        getFormData();
-    };
+  handleSubmit(e) {
+    e.preventDefault();
+    getFormData();
+  }
 
-    render() {
-        return this.compile(template, {
-            title: this.props.title,
-            children: this.children,
-            onClick: this.handleSubmit,
-        })
-    }
+  render() {
+    return this.compile(template, {
+      title: this.props.title,
+      children: this.children,
+      onClick: this.handleSubmit,
+    });
+  }
 }

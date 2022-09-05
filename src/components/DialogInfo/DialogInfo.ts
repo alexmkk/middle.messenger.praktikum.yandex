@@ -13,6 +13,7 @@ interface IDialogInfoProps {
 export class DialogInfo extends Block {
     constructor({userName, previewMessage, time, notifications, isManyNotifications = false, isAnswer = false}: IDialogInfoProps) {
         super("div", {
+
             userName,
             previewMessage,
             time,

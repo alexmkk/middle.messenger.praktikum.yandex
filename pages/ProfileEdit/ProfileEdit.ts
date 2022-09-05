@@ -1,26 +1,26 @@
-import {Block} from "../../src/utils/Block";
+import { Block } from "../../src/utils/Block";
 import template from "./profileEdit.hbs";
-import {getFormData} from "../../src/helpers/getFormData";
+import { getFormData } from "../../src/helpers/getFormData";
 
 interface IProfileEditPageProps {
-    title: string;
+  title: string;
 }
 
 export class ProfileEditPage extends Block {
-    constructor(props: IProfileEditPageProps) {
-        super("div", props);
-    }
+  constructor(props: IProfileEditPageProps) {
+    super("div", props);
+  }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        getFormData();
-    };
+  handleSubmit(e) {
+    e.preventDefault();
+    getFormData();
+  }
 
-    render() {
-        return this.compile(template, {
-            title: this.props.title,
-            children: this.children,
-            onClick: this.handleSubmit,
-        })
-    }
+  render() {
+    return this.compile(template, {
+      title: this.props.title,
+      children: this.children,
+      onClick: this.handleSubmit,
+    });
+  }
 }
