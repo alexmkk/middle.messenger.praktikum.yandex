@@ -3,7 +3,6 @@ import { HelperOptions } from "handlebars";
 
 import { Block } from "./Block";
 
-
 export function registerComponent(name: string, Component: typeof Block) {
     Handlebars.registerHelper(name, ({ hash, data }: HelperOptions) => {
         const component = new Component(hash);

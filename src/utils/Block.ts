@@ -115,7 +115,7 @@ export class Block {
         if (!events) {
             return;
         }
-        console.log("events", events, this.element);
+
         Object.entries(events).forEach(([event, listener]) => {
             this._element!.addEventListener(event, listener);
         });
@@ -125,7 +125,7 @@ export class Block {
         const fragment = this.render();
         const newElement = fragment.firstElementChild as HTMLElement;
         // const template = this.render();
-        console.log("RENDER", this.props)
+
         // const fragment = this.compile(template, { ...this.props, children: this.children });
 
         // this._element = fragment.firstElementChild as HTMLElement;
@@ -159,9 +159,8 @@ export class Block {
 
         temp.innerHTML = html;
 
-       Object.entries(this.children).forEach(([_, component]) => {
+        Object.entries(this.children).forEach(([_, component]) => {
            const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
-
            if (!stub) return;
 
            stub.replaceWith(component.getContent()!);
@@ -193,9 +192,9 @@ export class Block {
         });
     }
 
-    _createDocumentElement(tagName) {
-        return document.createElement(tagName);
-    }
+    // _createDocumentElement(tagName) {
+    //     return document.createElement(tagName);
+    // }
 
     show() {
         this.getContent()!.style.display = "block";

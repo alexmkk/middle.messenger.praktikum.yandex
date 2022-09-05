@@ -1,0 +1,135 @@
+@use "src/styles/variables";
+
+.chat-wrapper {
+  display: flex;
+
+  .chat-dialogs {
+    gap: 20px;
+    background: #f8f7fa;
+    flex: 0 1 350px;
+    border-right: 1px solid variables.$color-gray-light;
+
+    &__info {
+      text-align: right;
+      padding: 20px 10px 0 10px;
+
+      a {
+        color: #999999;
+        font-size: 12px;
+      }
+    }
+
+    &__search {
+      padding: 0 10px;
+
+      input {
+        width: 95%;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid variables.$color-gray-light;
+      }
+    }
+
+    &__content {
+      flex: 1 1 400px;
+      overflow-y: auto;
+    }
+  }
+
+  .single-dialog {
+    padding: 10px 20px;
+    flex: 1;
+
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 10px;
+    }
+
+    &__photo {
+      width: 35px;
+      height: 35px;
+      background: #d6d6d6;
+      border-radius: 50px
+    }
+
+    &__username {
+      flex: 1;
+    }
+
+    &__moreInfo {
+      font-size: 20px;
+    }
+
+    &__content {
+      padding: 10px 0;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      border-top: 1px solid variables.$color-gray-light;
+      border-bottom: 1px solid variables.$color-gray-light;
+
+      div {
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px 0;
+        position: relative;
+        min-width: 100px;
+      }
+
+      .dialog-time {
+        text-align: center;
+        color: variables.$color-gray;
+        font-size: 12px;
+      }
+
+      .message-time {
+        position: absolute;
+        color: variables.$color-gray;
+        bottom: 4px;
+        right: 8px;
+        font-size: 10px;
+      }
+
+      .left-message {
+        max-width: 48%;
+        background: #F8F8F8;
+        border: 1px solid variables.$color-gray-light;
+        align-self: flex-start;
+      }
+
+      .right-message {
+        max-width: 48%;
+        background: #E4EDFD;
+        align-self: flex-end;
+      }
+    }
+
+    &__message {
+      gap: 14px;
+      padding: 10px;
+
+      input {
+        width: 90%;
+        background: variables.$color-gray-second;
+        border: 1px solid variables.$color-gray;
+        padding: 5px 15px;
+        border-radius: 15px;
+      }
+
+      .attach {
+        background: url("/static/svg/attach.svg") center center no-repeat;
+      }
+
+      .arrow-right {
+        background: url("/static/svg/arrow.svg") center center no-repeat;
+      }
+    }
+  }
+  .page-button {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+  }
+}

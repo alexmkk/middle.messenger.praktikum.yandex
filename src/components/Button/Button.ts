@@ -1,23 +1,26 @@
 import { Block } from "../../utils/Block";
 import template from "./button.hbs";
-import styles from "./button.scss";
 
 interface IButtonProps {
     label: string;
     onClick?: () => void;
+    onFocus?: () => void;
+    onBlur?: () => void;
 }
 
 export class Button extends Block {
-    constructor({label, onClick}: IButtonProps) {
+    constructor({label, onClick, onFocus, onBlur}: IButtonProps) {
         super("button", {
             label,
             events: {
-                click: onClick
+                click: onClick,
+                focus: onFocus,
+                blur: onBlur,
             }
         });
     }
 
     render() {
-        return this.compile(template, {label: this.props.label, styles});
+        return this.compile(template, {label: this.props.label});
     }
 }

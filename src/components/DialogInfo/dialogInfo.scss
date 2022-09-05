@@ -1,0 +1,57 @@
+.dialogs__item {
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid #EAEAEA;
+  cursor: pointer;
+  padding: 10px;
+  max-height: 70px;
+  overflow: hidden;
+
+  &:hover {
+    background: #ececf1;
+  }
+
+  &__photo {
+    width: 50px;
+    height: 50px;
+    background: #d6d6d6;
+    border-radius: 50px;
+  }
+
+  &__user {
+    flex: 1 1;
+
+    p {
+      margin-bottom: 4px;
+    }
+
+    span {
+      font-size: 12px;
+    }
+
+  }
+
+  &__info {
+    align-items: flex-end;
+    justify-content: space-between;
+
+    .dialogs__time {
+      color: #999999;
+      font-size: 11px;
+    }
+
+    .dialogs__counter {
+      background: #3369F3;
+      border-radius: 50px;
+      text-align: center;
+      color: white;
+      width: 21px;
+      height: 21px;
+      font-size: 11px;
+    }
+  }
+
+  .preview-message {
+    color: #999999;
+  }
+}
