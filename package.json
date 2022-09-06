@@ -7,14 +7,13 @@
   "scripts": {
     "dev": "parcel index.html",
     "build": "parcel build index.html",
-    "start": "npm run build && node server.js",
+    "start": "yarn run build && node server.js",
     "lint": "yarn run lint:js && yarn run lint:styles",
     "lint:js": "eslint --ignore-path .gitignore \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:styles": "stylelint --ignore-path .gitignore \"{pages,src,style}/**/*.{css,scss,sass}\"",
     "lint:fix": "yarn run lint:js --fix && yarn run lint:styles --fix"
   },
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@parcel/transformer-sass": "2.7.0",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
@@ -23,7 +22,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "express": "^4.18.1",
-    "handlebars": "^4.7.7",
     "parcel": "^2.7.0",
     "prettier": "^2.7.1",
     "sass": "^1.54.4",
@@ -34,10 +32,9 @@
     "stylelint-scss": "^4.3.0",
     "typescript": "^4.8.2"
   },
-  "engines": {
-    "node": ">=16.14.2"
-  },
   "dependencies": {
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "handlebars": "^4.7.7",
     "uuid": "^8.3.2"
   }
 }
