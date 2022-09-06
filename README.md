@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/001b0a76-02b8-4902-813d-da34e3c8e948/deploy-status)](https://app.netlify.com/sites/lambent-biscotti-653b27/deploys)
+
 # Описание
 Приложение - аналог чата с возможностью авторизации, изменением настроек данных пользователя и обмена сообщениями.
 Используется компонентный подход и шаблонизатор Handlebars, TypeScript, SCSS.
