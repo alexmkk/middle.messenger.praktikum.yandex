@@ -11,8 +11,12 @@
 
 [[redirects]]
   from = "/login"
-  to = "/index.html"
+  to = "/index.html?page=login"
+
+[[redirects]]
+from = "/signin"
+to = "/index.html?page=signin"
 
 [[redirects]]
   from = "/profile.html"
-  to = "/index.html"
+  to = "/index.html?page=profile"
