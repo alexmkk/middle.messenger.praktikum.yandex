@@ -11,8 +11,8 @@
 
 [[redirects]]
   from = "/login"
-  to = "/"
+  to = "/index.html"
 
 [[redirects]]
   from = "/profile.html"
-  to = "/"
+  to = "/index.html"
