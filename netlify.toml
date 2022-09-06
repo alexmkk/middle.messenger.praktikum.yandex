@@ -16,7 +16,3 @@
 [[redirects]]
 from = "/signin"
 to = "/index.html?page=signin"
-
-[[redirects]]
-  from = "/profile.html"
-  to = "/index.html?page=profile"
