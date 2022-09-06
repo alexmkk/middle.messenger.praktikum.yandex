@@ -7,15 +7,34 @@ export enum ValidationFields {
   Message = "message",
 }
 
-export const validate = (value: string, type: ValidationFields) => {
-  const validationTypes = {
-    email: /\S+@\S+\.\S+/,
-    name: /[A-ZА-Я][a-zа-я\\-]*/,
-    login: /(?!^\d+$)[A-Za-z0-9_\\-]{3,20}/,
-    password: /[A-Za-z0-9]{8,40}/,
-    phone: /\+?[0-9]{10,15}/,
-    message: /^[\s\S]{1,10}/,
+export const validate = (value: string, field: ValidationFields): [boolean, string] => {
+  const validationFields = {
+    email: {
+      // eslint-disable-next-line max-len
+      reg: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      message: "Некорректный email",
+    },
+    name: {
+      reg: /^[A-ZА-Я][a-zа-я-]{3,}$/,
+      message: "Должно начинаться с заглавной буквы",
+    },
+    login: {
+      reg: /^[a-zA-Z][a-zA-Z0-9_-]{3,}$/,
+      message: "Минимум 3 символа без пробелов",
+    },
+    password: {
+      reg: /^(?=^.{8,40}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
+      message: "Минимум 8 символов, 1 заглавная буква и 1 цифра",
+    },
+    phone: {
+      reg: /\+?[0-9]{10,15}/,
+      message: "Некорректный номер телефона",
+    },
+    message: {
+      reg: /^[\s\S]/,
+      message: "Поле не должно быть пустым",
+    },
   };
 
-  return validationTypes[type].test(value);
+  return [validationFields[field].reg.test(value), validationFields[field].message];
 };

@@ -19,6 +19,7 @@ body {
 h1 {
   font-size: 20px;
   line-height: 20px;
+  margin: 20px;
 }
 
 a {
@@ -31,6 +32,14 @@ div {
 
 input {
   padding: 5px;
+}
+
+ul {
+  margin: 0 20px;
+
+  li {
+    margin: 20px;
+  }
 }
 
 .wrapper {
@@ -65,7 +74,7 @@ input {
 }
 
 .input-error {
-  font-size: 12px;
+  font-size: 10px;
   position: absolute;
   bottom: 4px;
 }

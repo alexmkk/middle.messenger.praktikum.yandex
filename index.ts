@@ -26,20 +26,32 @@ registerComponent("LabelInput", LabelInput as any);
 window.addEventListener("DOMContentLoaded", () => {
   const root = document.querySelector("#app")!;
 
-  const homePage = new HomePage({ title: "Главная" });
-  const loginPage = new LoginPage({ title: "Авторизация" });
-  const signInPage = new SignInPage({ title: "Регистрация" });
-  const errorPage404 = new ErrorPage({ text: "Не туда попали", error: 400 });
-  const errorPage500 = new ErrorPage({
-    text: "Что-то пошло не так",
-    error: 500,
-  });
-  const profilePage = new ProfilePage({ title: "Профиль" });
-  const profileEditPage = new ProfileEditPage({
-    title: "Редактировать профиль",
-  });
-  const profileEditPass = new ProfileEditPassPage({ title: "Изменить пароль" });
-  const chatPage = new ChatPage({ title: "Чат" });
+  const pages = {
+    home: new HomePage({ title: "Главная" }),
+    login: new LoginPage({ title: "Авторизация" }),
+    signin: new SignInPage({ title: "Регистрация" }),
+    error404: new ErrorPage({ text: "Не туда попали", error: 400 }),
+    error500: new ErrorPage({
+      text: "Что-то пошло не так",
+      error: 500,
+    }),
+    profile: new ProfilePage({ title: "Профиль" }),
+    profileEdit: new ProfileEditPage({
+      title: "Редактировать профиль",
+    }),
+    profileEditPass: new ProfileEditPassPage({ title: "Изменить пароль" }),
+    chat: new ChatPage({ title: "Чат", isChatSelected: false }),
+    chatSelected: new ChatPage({ title: "Чат", isChatSelected: true }),
+  };
 
-  root.append(loginPage.getContent()!);
+  const getPage = () => {
+    const url = window.location.pathname.split("/")[1];
+    if (url) {
+      root.append(pages[url].getContent()!);
+    } else {
+      root.append(pages.home.getContent()!);
+    }
+  };
+
+  getPage();
 });

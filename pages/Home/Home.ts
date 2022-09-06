@@ -14,9 +14,6 @@ export class HomePage extends Block {
     return this.compile(template, {
       title: this.props.title,
       children: this.children,
-      onClick: () => {
-        console.log("Home page");
-      },
     });
   }
 }

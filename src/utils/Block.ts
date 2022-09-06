@@ -42,13 +42,7 @@ export class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
-    // const { tagName } = this._meta;
-    // this._element = this._createDocumentElement(tagName);
-  }
-
   init() {
-    this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -121,11 +115,7 @@ export class Block {
   private _render() {
     const fragment = this.render();
     const newElement = fragment.firstElementChild as HTMLElement;
-    // const template = this.render();
 
-    // const fragment = this.compile(template, { ...this.props, children: this.children });
-
-    // this._element = fragment.firstElementChild as HTMLElement;
     this._element?.replaceWith(newElement);
     this._element = newElement;
 
@@ -143,14 +133,6 @@ export class Block {
   protected compile(template: (context: object) => string, context: object) {
     const contextAndStubs = { ...context };
 
-    // Object.entries(this.children).forEach(([name, component]) => {
-    //     contextAndStubs[name] = `<div data-id="${component.id}" />`;
-    // });
-
-    // const compiled = Handlebars.compile(template);
-    // const temp = document.createElement("template");
-    //
-    // temp.innerHTML = compiled(contextAndStubs);
     const html = template(contextAndStubs);
     const temp = document.createElement("template");
 

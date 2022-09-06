@@ -11,14 +11,7 @@ interface IInputProps {
 }
 
 export class Input extends Block {
-  constructor({
-    type = "text",
-    name,
-    value = "",
-    placeholder = "",
-    onFocus,
-    onBlur,
-  }: IInputProps) {
+  constructor({ type = "text", name, value = "", placeholder = "", onFocus, onBlur }: IInputProps) {
     super("input", {
       name,
       type,

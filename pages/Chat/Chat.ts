@@ -3,6 +3,7 @@ import template from "./chat.hbs";
 
 interface IChatPageProps {
   title: string;
+  isChatSelected?: boolean;
 }
 
 export class ChatPage extends Block {
@@ -13,10 +14,8 @@ export class ChatPage extends Block {
   render() {
     return this.compile(template, {
       title: this.props.title,
+      isChatSelected: this.props.isChatSelected,
       children: this.children,
-      onClick: () => {
-        console.log("Chat page");
-      },
     });
   }
 }

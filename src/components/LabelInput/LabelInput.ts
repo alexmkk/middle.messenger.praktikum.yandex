@@ -17,8 +17,10 @@ export class LabelInput extends Block {
         const value = target.value;
 
         if (validation) {
+          const [isValid, message] = validate(value, validation);
+
           this.setProps({
-            error: !validate(value, validation) ? "Невалидное поле" : "",
+            error: !isValid ? message : "",
             value,
           });
         }

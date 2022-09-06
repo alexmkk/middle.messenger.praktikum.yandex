@@ -55,14 +55,9 @@ export class HTTPTransport {
     return this.request(url, { ...options }, options.timeout);
   };
 
-  request = (
-    url,
-    options: IOption = { method: METHODS.GET },
-    timeout = 5000
-  ) => {
+  request = (url, options: IOption = { method: METHODS.GET }, timeout = 5000) => {
     const { headers, data, method } = options;
-    const newUrl =
-      method === METHODS.GET && data ? url + queryStringify(data) : url;
+    const newUrl = method === METHODS.GET && data ? url + queryStringify(data) : url;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();

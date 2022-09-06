@@ -14,8 +14,6 @@
     "lint:fix": "yarn run lint:js --fix && yarn run lint:styles --fix"
   },
   "devDependencies": {
-    "@andreyvolokitin/parcel-transformer-handlebars": "^0.0.3",
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@parcel/transformer-sass": "2.7.0",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
