@@ -8,11 +8,3 @@
 [build]
   publish = "dist"
   command = "npm run build"
-
-[[redirects]]
-  from = "/login"
-  to = "/index.html?page=login"
-
-[[redirects]]
-from = "/signin"
-to = "/index.html?page=signin"
