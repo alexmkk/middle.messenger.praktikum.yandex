@@ -48,6 +48,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const url = window.location.pathname.split("/")[1];
     if (url) {
       const formattedUrl = url.split(".")[0];
+
       root.append(pages[formattedUrl].getContent()!);
     } else {
       root.append(pages.home.getContent()!);
