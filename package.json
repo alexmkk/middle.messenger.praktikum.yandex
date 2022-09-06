@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "parcel index.html",
     "build": "parcel build index.html",
-    "start": "node server.js",
+    "start": "npm run build && node server.js",
     "lint": "yarn run lint:js && yarn run lint:styles",
     "lint:js": "eslint --ignore-path .gitignore \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:styles": "stylelint --ignore-path .gitignore \"{pages,src,style}/**/*.{css,scss,sass}\"",
@@ -33,6 +33,9 @@
     "stylelint-prettier": "^2.0.0",
     "stylelint-scss": "^4.3.0",
     "typescript": "^4.8.2"
+  },
+  "engines": {
+    "node": ">=16.14.2"
   },
   "dependencies": {
     "uuid": "^8.3.2"
