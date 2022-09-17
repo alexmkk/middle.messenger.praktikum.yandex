@@ -1,0 +1,64 @@
+<div class="wrapper flex">
+    <div class="chat-wrapper flex-auto">
+        <div class="chat-dialogs flex-column">
+            <div class="chat-dialogs__info text-bold">
+                <a href="/index.html?page=profile">Профиль ></a>
+            </div>
+            <div class="chat-dialogs__search">
+                {{{Input placeholder="Поиск" name="search"}}}
+            </div>
+            <div class="chat-dialogs__content">
+                {{{DialogInfo userName="Андрей" previewMessage="Изображение" time="20:10" notifications=4}}}
+                {{{DialogInfo userName="Михаил" previewMessage="Привет!" time="11:15" notifications=1}}}
+                {{{DialogInfo userName="Александр" previewMessage="Hi!!!" time="01:03" notifications=12 isManyNotifications=true}}}
+                {{{DialogInfo userName="Андрей" previewMessage="Миллионы россиян ежедневно проводят десятки часов своего времени длинный текст" time="Сб" notifications=4}}}
+                {{{DialogInfo userName="Михаил" previewMessage="Привет!" time="Пт" isAnswer=true}}}
+                {{{DialogInfo userName="Александр" previewMessage="Hi!!!" time="Ср" isAnswer=true}}}
+                {{{DialogInfo userName="Андрей" previewMessage="Изображение" time="Пн"}}}
+                {{{DialogInfo userName="Михаил" previewMessage="Привет!" time="4 августа 2022"}}}
+                {{{DialogInfo userName="Александр" previewMessage="Hi!!!" time="3 августа 2022"}}}
+                {{{DialogInfo userName="Андрей" previewMessage="Изображение" time="25 июля 2022"}}}
+                {{{DialogInfo userName="Михаил" previewMessage="Привет!" time="20 июня 2022"}}}
+                {{{DialogInfo userName="Александр" previewMessage="Hi!!!" time="11 января 2021"}}}
+                {{{DialogInfo userName="Александр" previewMessage="Hi!!!" time="11 января 2021"}}}
+            </div>
+        </div>
+        {{#if isChatSelected}}
+            <div class="single-dialog flex-column">
+                <div class="single-dialog__header">
+                    <div class="single-dialog__photo"></div>
+                    <div class="single-dialog__username text-bold">Александр</div>
+                    <div class="single-dialog__moreInfo">
+                        <a href="#">...</a>
+                    </div>
+                </div>
+                <div class="single-dialog__content">
+                    <div class="dialog-time">
+                        <time>20 августа</time>
+                    </div>
+                    <div class="left-message">
+                        Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
+
+                        Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
+                        <span class="message-time">20:12</span>
+                    </div>
+                    <div class="right-message">
+                        Nice!
+                        <span class="message-time">20:12</span>
+                    </div>
+                </div>
+                <div class="single-dialog__message flex-center">
+                    <div class="page-button attach"></div>
+                    <div class="flex-auto">
+                        {{{LabelInput name="message" placeholder="Сообщение" validation="message"}}}
+                    </div>
+                    <div class="page-button arrow-right"></div>
+                </div>
+            </div>
+        {{else}}
+            <div class="flex-center flex-auto">
+                <p>Выберите чат чтобы отправить сообщение</p>
+            </div>
+        {{/if}}
+    </div>
+</div>

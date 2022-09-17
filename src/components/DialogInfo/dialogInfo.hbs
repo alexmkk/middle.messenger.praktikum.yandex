@@ -1,0 +1,25 @@
+<div class="dialogs__item flex">
+    <div class="dialogs__item__photo"></div>
+    <div class="dialogs__item__user">
+        <p class="text-bold">{{userName}}</p>
+        {{#if isAnswer}}
+            <span class="text-bold">Вы:</span>
+        {{/if}}
+        <span class="preview-message">
+            {{previewMessage}}
+        </span>
+    </div>
+    <div class="dialogs__item__info flex-column">
+        <div class="dialogs__time">{{time}}</div>
+        {{#if notifications}}
+            <div class="dialogs__counter flex-center">
+                {{#if isManyNotifications}}
+                    9+
+                {{else}}
+                    {{notifications}}
+                {{/if}}
+            </div>
+        {{/if}}
+
+    </div>
+</div>
