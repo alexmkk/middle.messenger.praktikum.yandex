@@ -1,18 +1,14 @@
-enum METHODS {
+import { queryString } from "./QueryString";
+
+enum Methods {
   GET = "GET",
   PUT = "PUT",
   POST = "POST",
   DELETE = "DELETE",
 }
 
-function queryStringify(data) {
-  return Object.keys(data)
-    .reduce((prev, cur) => `${prev}${cur}=${data[cur]}&`, "?")
-    .slice(0, -1);
-}
-
 interface IOption {
-  method: METHODS;
+  method: Methods;
   data?: unknown;
   timeout?: number;
   headers?: Record<string, string>;
@@ -22,16 +18,18 @@ export class HTTPTransport {
   get = (
     url: string,
     options: IOption = {
-      method: METHODS.GET,
+      method: Methods.GET,
     }
   ) => {
-    return this.request(url, { ...options }, options.timeout);
+    const newUrl = url + queryString(options.data);
+
+    return this.request(newUrl, { ...options }, options.timeout);
   };
 
   put = (
     url: string,
     options: IOption = {
-      method: METHODS.PUT,
+      method: Methods.PUT,
     }
   ) => {
     return this.request(url, { ...options }, options.timeout);
@@ -40,7 +38,7 @@ export class HTTPTransport {
   post = (
     url: string,
     options: IOption = {
-      method: METHODS.POST,
+      method: Methods.POST,
     }
   ) => {
     return this.request(url, { ...options }, options.timeout);
@@ -49,20 +47,19 @@ export class HTTPTransport {
   delete = (
     url: string,
     options: IOption = {
-      method: METHODS.DELETE,
+      method: Methods.DELETE,
     }
   ) => {
     return this.request(url, { ...options }, options.timeout);
   };
 
-  request = (url, options: IOption = { method: METHODS.GET }, timeout = 5000) => {
+  request = (url: string, options: IOption = { method: Methods.GET }, timeout = 5000) => {
     const { headers, data, method } = options;
-    const newUrl = method === METHODS.GET && data ? url + queryStringify(data) : url;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      xhr.open(method || METHODS.GET, newUrl);
+      xhr.open(method || Methods.GET, url);
       xhr.setRequestHeader("Content-Type", "text/plain");
 
       if (headers) {
@@ -82,7 +79,7 @@ export class HTTPTransport {
         resolve(xhr);
       };
 
-      if (method === METHODS.GET || !data) {
+      if (method === Methods.GET || !data) {
         xhr.send();
       } else {
         xhr.send(JSON.stringify(data));

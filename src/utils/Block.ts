@@ -35,7 +35,7 @@ export class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus) {
+  private _registerEvents(eventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -46,7 +46,7 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
@@ -57,7 +57,7 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps, newProps) {
+  private _componentDidUpdate(oldProps: object, newProps: object) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -80,7 +80,7 @@ export class Block {
     return this._element;
   }
 
-  _getChildrenAndProps(childrenAndProps: object) {
+  private _getChildrenAndProps(childrenAndProps: object) {
     const props: Record<string, unknown> = {};
     const children: Record<string, Block> = {};
 
@@ -98,7 +98,7 @@ export class Block {
     };
   }
 
-  _addEvents() {
+  private _addEvents() {
     const { events = {} } = this.props as {
       events: Record<string, () => void>;
     };
@@ -150,10 +150,7 @@ export class Block {
     return temp.content;
   }
 
-  _makePropsProxy(props) {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const self = this;
-
+  private _makePropsProxy = (props) => {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];
@@ -165,14 +162,14 @@ export class Block {
 
         target[prop] = value;
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
       deleteProperty() {
         throw new Error("Нет доступа");
       },
     });
-  }
+  };
 
   show() {
     this.getContent()!.style.display = "block";

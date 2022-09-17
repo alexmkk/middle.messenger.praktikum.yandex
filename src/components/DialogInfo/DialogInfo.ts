@@ -11,32 +11,32 @@ interface IDialogInfoProps {
 }
 
 export class DialogInfo extends Block {
-  constructor({
-    userName,
-    previewMessage,
-    time,
-    notifications,
-    isManyNotifications = false,
-    isAnswer = false,
-  }: IDialogInfoProps) {
-    super("div", {
+  constructor(props: IDialogInfoProps) {
+    super(
+      "div",
+      Object.assign(
+        {
+          isManyNotifications: false,
+          isAnswer: false,
+        },
+        {
+          ...props,
+        }
+      )
+    );
+  }
+
+  render() {
+    const { userName, previewMessage, time, notifications, isManyNotifications, isAnswer } =
+      this.props;
+
+    return this.compile(template, {
       userName,
       previewMessage,
       time,
       notifications,
       isManyNotifications,
       isAnswer,
-    });
-  }
-
-  render() {
-    return this.compile(template, {
-      userName: this.props.userName,
-      previewMessage: this.props.previewMessage,
-      time: this.props.time,
-      notifications: this.props.notifications,
-      isManyNotifications: this.props.isManyNotifications,
-      isAnswer: this.props.isAnswer,
     });
   }
 }
