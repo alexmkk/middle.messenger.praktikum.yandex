@@ -5,7 +5,7 @@ interface IHomePageProps {
   title: string;
 }
 
-export class HomePage extends Block {
+export class HomePage extends Block<IHomePageProps> {
   constructor(props: IHomePageProps) {
     super("div", props);
   }

@@ -5,7 +5,7 @@ interface IProfilePageProps {
   title: string;
 }
 
-export class ProfilePage extends Block {
+export class ProfilePage extends Block<IProfilePageProps> {
   constructor(props: IProfilePageProps) {
     super("div", props);
   }

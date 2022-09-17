@@ -5,7 +5,7 @@ import { Block } from "./Block";
 
 export function registerComponent(name: string, Component: typeof Block) {
   Handlebars.registerHelper(name, ({ hash, data }: HelperOptions) => {
-    const component = new Component(hash);
+    const component = new Component(hash, {});
 
     if (!data.root.children) {
       data.root.children = {};

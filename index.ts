@@ -26,7 +26,7 @@ registerComponent("LabelInput", LabelInput as any);
 window.addEventListener("DOMContentLoaded", () => {
   const root = document.querySelector("#app")!;
 
-  const pages = {
+  const pages: any = {
     home: new HomePage({ title: "Главная" }),
     login: new LoginPage({ title: "Авторизация" }),
     signin: new SignInPage({ title: "Регистрация" }),

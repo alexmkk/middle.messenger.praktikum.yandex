@@ -10,7 +10,7 @@ interface IDialogInfoProps {
   isAnswer: boolean;
 }
 
-export class DialogInfo extends Block {
+export class DialogInfo extends Block<IDialogInfoProps> {
   constructor(props: IDialogInfoProps) {
     super(
       "div",

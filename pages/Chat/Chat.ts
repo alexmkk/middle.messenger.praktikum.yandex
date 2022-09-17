@@ -6,7 +6,7 @@ interface IChatPageProps {
   isChatSelected?: boolean;
 }
 
-export class ChatPage extends Block {
+export class ChatPage extends Block<IChatPageProps> {
   constructor(props: IChatPageProps) {
     super("div", props);
   }

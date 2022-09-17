@@ -6,7 +6,7 @@ interface IErrorPageProps {
   text: string;
 }
 
-export class ErrorPage extends Block {
+export class ErrorPage extends Block<IErrorPageProps> {
   constructor(props: IErrorPageProps) {
     super("div", props);
   }

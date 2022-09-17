@@ -7,12 +7,12 @@ interface ILoginPageProps {
   title: string;
 }
 
-export class LoginPage extends Block {
+export class LoginPage extends Block<ILoginPageProps> {
   constructor(props: ILoginPageProps) {
     super("div", props);
   }
 
-  handleSubmit(e) {
+  handleSubmit(e: Event) {
     e.preventDefault();
     getFormData();
   }

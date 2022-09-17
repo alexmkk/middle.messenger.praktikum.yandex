@@ -11,7 +11,7 @@ export class SignInPage extends Block {
     super("div", props);
   }
 
-  handleSubmit(e) {
+  handleSubmit(e: Event) {
     e.preventDefault();
     getFormData();
   }

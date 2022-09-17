@@ -1,7 +1,7 @@
 import { EventBus } from "./EventBus";
 import { v4 as uuidv4 } from "uuid";
 
-export class Block {
+export class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -10,13 +10,13 @@ export class Block {
   };
 
   public id: string = uuidv4();
-  protected props: Record<string, unknown>;
+  protected props: P;
   protected children: Record<string, Block>;
   private _element: HTMLElement | null = null;
-  private _meta: { tagName: string; props: unknown };
+  private _meta: { tagName: string; props: P };
   private eventBus: () => EventBus;
 
-  constructor(tagName = "div", propsWithChildren = {}) {
+  constructor(tagName = "div", propsWithChildren: P) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -35,7 +35,7 @@ export class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _registerEvents(eventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -57,18 +57,18 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps: object, newProps: object) {
+  private _componentDidUpdate(oldProps: P, newProps: P) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected componentDidUpdate(_oldProps: object, _newProps: object) {
+  protected componentDidUpdate(_oldProps: P, _newProps: P) {
     return true;
   }
 
-  setProps = (nextProps: unknown) => {
+  setProps = (nextProps: P) => {
     if (!nextProps) {
       return;
     }
@@ -80,13 +80,13 @@ export class Block {
     return this._element;
   }
 
-  private _getChildrenAndProps(childrenAndProps: object) {
-    const props: Record<string, unknown> = {};
+  private _getChildrenAndProps(childrenAndProps: P) {
+    const props: P = {} as P;
     const children: Record<string, Block> = {};
 
-    Object.entries(childrenAndProps).forEach(([key, value]) => {
+    Object.entries(childrenAndProps).forEach(([key, value]: [keyof P, any]) => {
       if (value instanceof Block) {
-        children[key] = value;
+        children[key as string] = value;
       } else {
         props[key] = value;
       }
@@ -99,7 +99,7 @@ export class Block {
   }
 
   private _addEvents() {
-    const { events = {} } = this.props as {
+    const { events = {} } = this.props as P & {
       events: Record<string, () => void>;
     };
 
@@ -130,7 +130,7 @@ export class Block {
     return this.element;
   }
 
-  protected compile(template: (context: object) => string, context: object) {
+  protected compile(template: (context: any) => string, context: object) {
     const contextAndStubs = { ...context };
 
     const html = template(contextAndStubs);
@@ -150,9 +150,9 @@ export class Block {
     return temp.content;
   }
 
-  private _makePropsProxy = (props) => {
+  private _makePropsProxy = (props: P) => {
     return new Proxy(props, {
-      get(target, prop) {
+      get(target, prop: string) {
         const value = target[prop];
 
         return typeof value === "function" ? value.bind(target) : value;
@@ -160,7 +160,7 @@ export class Block {
       set(target, prop, value) {
         const oldTarget = { ...target };
 
-        target[prop] = value;
+        target[prop as keyof P] = value;
 
         this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;

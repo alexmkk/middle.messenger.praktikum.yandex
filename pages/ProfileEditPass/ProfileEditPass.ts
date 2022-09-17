@@ -6,12 +6,12 @@ interface IProfileEditPassPageProps {
   title: string;
 }
 
-export class ProfileEditPassPage extends Block {
+export class ProfileEditPassPage extends Block<IProfileEditPassPageProps> {
   constructor(props: IProfileEditPassPageProps) {
     super("div", props);
   }
 
-  handleSubmit(e) {
+  handleSubmit(e: Event) {
     e.preventDefault();
     getFormData();
   }

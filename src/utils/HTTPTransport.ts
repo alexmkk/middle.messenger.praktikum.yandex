@@ -1,4 +1,5 @@
 import { queryString } from "./QueryString";
+import { RecordString } from "../types/types";
 
 enum Methods {
   GET = "GET",
@@ -9,9 +10,9 @@ enum Methods {
 
 interface IOption {
   method: Methods;
-  data?: unknown;
+  data?: RecordString;
   timeout?: number;
-  headers?: Record<string, string>;
+  headers?: RecordString;
 }
 
 export class HTTPTransport {
@@ -21,7 +22,7 @@ export class HTTPTransport {
       method: Methods.GET,
     }
   ) => {
-    const newUrl = url + queryString(options.data);
+    const newUrl = options.data ? url + queryString(options.data) : url;
 
     return this.request(newUrl, { ...options }, options.timeout);
   };
