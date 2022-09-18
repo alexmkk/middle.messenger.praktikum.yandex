@@ -1,19 +1,17 @@
 import { Block } from "../../src/utils/Block";
-import template from "./chat.hbs";
+import template from "./messenger.hbs";
 
 interface IChatPageProps {
-  title: string;
   isChatSelected?: boolean;
 }
 
 export class ChatPage extends Block<IChatPageProps> {
   constructor(props: IChatPageProps) {
-    super("div", props);
+    super(props);
   }
 
   render() {
     return this.compile(template, {
-      title: this.props.title,
       isChatSelected: this.props.isChatSelected,
       children: this.children,
     });

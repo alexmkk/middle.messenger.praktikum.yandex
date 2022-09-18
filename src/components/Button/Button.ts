@@ -10,7 +10,7 @@ interface IButtonProps {
 
 export class Button extends Block {
   constructor({ label, onClick, onFocus, onBlur }: IButtonProps) {
-    super("button", {
+    super({
       label,
       events: {
         click: onClick,

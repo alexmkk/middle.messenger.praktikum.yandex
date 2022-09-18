@@ -13,7 +13,6 @@ interface IDialogInfoProps {
 export class DialogInfo extends Block<IDialogInfoProps> {
   constructor(props: IDialogInfoProps) {
     super(
-      "div",
       Object.assign(
         {
           isManyNotifications: false,

@@ -1,7 +1,7 @@
 <div class="wrapper flex-center">
     <div class="form-wrapper">
         <form class="form">
-            <h1>{{title}}</h1>
+            <h1>Регистрация</h1>
 
             {{{LabelInput label="Логин" name="login" validation="login"}}}
             {{{LabelInput label="Имя" name="first_name" validation="name"}}}
@@ -15,9 +15,9 @@
 
             {{{Button label="Регистрация" type="submit" onClick=onClick}}}
 
-            <p class="form__help">
-                <a href="/index.html?page=login">Вход</a>
-            </p>
+
+            {{{Link label="Вход" to="/login"}}}
+
         </form>
     </div>
 </div>

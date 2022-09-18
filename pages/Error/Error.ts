@@ -8,7 +8,7 @@ interface IErrorPageProps {
 
 export class ErrorPage extends Block<IErrorPageProps> {
   constructor(props: IErrorPageProps) {
-    super("div", props);
+    super(props);
   }
 
   render() {

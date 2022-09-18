@@ -12,7 +12,7 @@ interface IInputProps {
 
 export class Input extends Block {
   constructor({ type = "text", name, value = "", placeholder = "", onFocus, onBlur }: IInputProps) {
-    super("input", {
+    super({
       name,
       type,
       value,

@@ -13,16 +13,15 @@ export class Block<P extends Record<string, any> = any> {
   protected props: P;
   protected children: Record<string, Block>;
   private _element: HTMLElement | null = null;
-  private _meta: { tagName: string; props: P };
+  private _meta: { props: P };
   private eventBus: () => EventBus;
 
-  constructor(tagName = "div", propsWithChildren: P) {
+  constructor(propsWithChildren: P) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this._meta = {
-      tagName,
       props,
     };
 
@@ -126,7 +125,7 @@ export class Block<P extends Record<string, any> = any> {
     return new DocumentFragment();
   }
 
-  getContent() {
+  public getContent() {
     return this.element;
   }
 
@@ -157,11 +156,10 @@ export class Block<P extends Record<string, any> = any> {
 
         return typeof value === "function" ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set: (target, prop, value) => {
         const oldTarget = { ...target };
 
         target[prop as keyof P] = value;
-
         this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },

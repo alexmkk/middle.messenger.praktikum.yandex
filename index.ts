@@ -4,16 +4,18 @@ import { ErrorPage } from "./pages/Error/Error";
 import { LoginPage } from "./pages/Login/Login";
 import { SignInPage } from "./pages/SignIn/SignIn";
 import { ProfilePage } from "./pages/Profile/Profile";
-import { ProfileEditPage } from "./pages/ProfileEdit/ProfileEdit";
+import { SettingsPage } from "./pages/Settings/Settings";
 import { ProfileEditPassPage } from "./pages/ProfileEditPass/ProfileEditPass";
-import { ChatPage } from "./pages/Chat/Chat";
+import { ChatPage } from "./pages/Messenger/Messenger";
 
 // Components
 import Button from "./src/components/Button";
 import Input from "./src/components/Input";
 import Info from "./src/components/Info";
 import DialogInfo from "./src/components/DialogInfo";
-import { LabelInput } from "./src/components/LabelInput/LabelInput";
+import LabelInput from "./src/components/LabelInput";
+import Router from "./src/utils/Router";
+import Link from "./src/components/Link";
 
 import { registerComponent } from "./src/utils/RegisterComponent";
 
@@ -22,39 +24,49 @@ registerComponent("Input", Input as any);
 registerComponent("Info", Info as any);
 registerComponent("DialogInfo", DialogInfo as any);
 registerComponent("LabelInput", LabelInput as any);
+registerComponent("Link", Link as any);
 
 window.addEventListener("DOMContentLoaded", () => {
-  const root = document.querySelector("#app")!;
+  Router.use("/", HomePage)
+    .use("/login", LoginPage)
+    .use("/signin", SignInPage)
+    .use("/profile", ProfilePage)
+    .use("/settings", SettingsPage)
+    .use("/profileEditPass", ProfileEditPassPage)
 
-  const pages: any = {
-    home: new HomePage({ title: "Главная" }),
-    login: new LoginPage({ title: "Авторизация" }),
-    signin: new SignInPage({ title: "Регистрация" }),
-    error404: new ErrorPage({ text: "Не туда попали", error: 400 }),
-    error500: new ErrorPage({
-      text: "Что-то пошло не так",
-      error: 500,
-    }),
-    profile: new ProfilePage({ title: "Профиль" }),
-    profileEdit: new ProfileEditPage({
-      title: "Редактировать профиль",
-    }),
-    profileEditPass: new ProfileEditPassPage({ title: "Изменить пароль" }),
-    chat: new ChatPage({ title: "Чат", isChatSelected: false }),
-    chatSelected: new ChatPage({ title: "Чат", isChatSelected: true }),
-  };
+    .start();
 
-  const getPage = () => {
-    const url = window.location.search;
+  // const root = document.querySelector("#app")!;
 
-    if (url) {
-      const formattedUrl = url.split("=")[1];
-
-      root.append(pages[formattedUrl].getContent()!);
-    } else {
-      root.append(pages.home.getContent()!);
-    }
-  };
-
-  getPage();
+  // const pages: any = {
+  //   home: new HomePage({ title: "Главная" }),
+  //   login: new LoginPage({ title: "Авторизация" }),
+  //   signin: new SignInPage({ title: "Регистрация" }),
+  //   error404: new ErrorPage({ text: "Не туда попали", error: 400 }),
+  //   error500: new ErrorPage({
+  //     text: "Что-то пошло не так",
+  //     error: 500,
+  //   }),
+  //   profile: new ProfilePage({ title: "Профиль" }),
+  //   profileEdit: new ProfileEditPage({
+  //     title: "Редактировать профиль",
+  //   }),
+  //   profileEditPass: new ProfileEditPassPage({ title: "Изменить пароль" }),
+  //   chat: new ChatPage({ title: "Чат", isChatSelected: false }),
+  //   chatSelected: new ChatPage({ title: "Чат", isChatSelected: true }),
+  // };
+  //
+  // const getPage = () => {
+  //   const url = window.location.search;
+  //
+  //   if (url) {
+  //     const formattedUrl = url.split("=")[1];
+  //
+  //     root.append(pages[formattedUrl].getContent()!);
+  //   } else {
+  //     root.append(pages.home.getContent()!);
+  //   }
+  // };
+  //
+  // getPage();
 });

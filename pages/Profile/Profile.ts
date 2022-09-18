@@ -1,18 +1,13 @@
 import { Block } from "../../src/utils/Block";
 import template from "./profile.hbs";
 
-interface IProfilePageProps {
-  title: string;
-}
-
-export class ProfilePage extends Block<IProfilePageProps> {
-  constructor(props: IProfilePageProps) {
-    super("div", props);
+export class ProfilePage extends Block {
+  constructor() {
+    super({});
   }
 
   render() {
     return this.compile(template, {
-      title: this.props.title,
       children: this.children,
     });
   }
