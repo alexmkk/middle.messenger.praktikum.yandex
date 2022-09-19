@@ -1,6 +1,6 @@
 import { RecordString } from "../types/types";
 
-export const getFormData = (): void => {
+export const getFormData = (): RecordString => {
   const result: RecordString = {};
   const nodes = document.querySelectorAll("input");
 
@@ -9,4 +9,6 @@ export const getFormData = (): void => {
   });
 
   console.log(result);
+
+  return result;
 };

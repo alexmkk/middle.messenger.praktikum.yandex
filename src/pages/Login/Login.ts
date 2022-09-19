@@ -1,8 +1,9 @@
-import { Block } from "../../src/utils/Block";
-import template from "./profileEditPass.hbs";
-import { getFormData } from "../../src/helpers/getFormData";
+import { Block } from "../../utils/Block";
+import template from "./login.hbs";
 
-export class ProfileEditPassPage extends Block {
+import { getFormData } from "../../helpers/getFormData";
+
+export class LoginPage extends Block {
   constructor() {
     super({});
   }

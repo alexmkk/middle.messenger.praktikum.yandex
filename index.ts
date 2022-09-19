@@ -1,12 +1,12 @@
 // Pages
-import { HomePage } from "./pages/Home/Home";
-import { ErrorPage } from "./pages/Error/Error";
-import { LoginPage } from "./pages/Login/Login";
-import { SignInPage } from "./pages/SignIn/SignIn";
-import { ProfilePage } from "./pages/Profile/Profile";
-import { SettingsPage } from "./pages/Settings/Settings";
-import { ProfileEditPassPage } from "./pages/ProfileEditPass/ProfileEditPass";
-import { ChatPage } from "./pages/Messenger/Messenger";
+import { HomePage } from "./src/pages/Home/Home";
+import { ErrorPage } from "./src/pages/Error/Error";
+import { LoginPage } from "./src/pages/Login/Login";
+import { RegisterPage } from "./src/pages/Register/Register";
+import { ProfilePage } from "./src/pages/Profile/Profile";
+import { SettingsPage } from "./src/pages/Settings/Settings";
+import { ProfileEditPassPage } from "./src/pages/ProfileEditPass/ProfileEditPass";
+import { ChatPage } from "./src/pages/Messenger/Messenger";
 
 // Components
 import Button from "./src/components/Button";
@@ -29,11 +29,10 @@ registerComponent("Link", Link as any);
 window.addEventListener("DOMContentLoaded", () => {
   Router.use("/", HomePage)
     .use("/login", LoginPage)
-    .use("/signin", SignInPage)
+    .use("/signup", RegisterPage)
     .use("/profile", ProfilePage)
     .use("/settings", SettingsPage)
     .use("/profileEditPass", ProfileEditPassPage)
-
     .start();
 
   // const root = document.querySelector("#app")!;

@@ -1,7 +1,7 @@
-import { Block } from "../../src/utils/Block";
-import template from "./home.hbs";
+import { Block } from "../../utils/Block";
+import template from "./profile.hbs";
 
-export class HomePage extends Block {
+export class ProfilePage extends Block {
   constructor() {
     super({});
   }

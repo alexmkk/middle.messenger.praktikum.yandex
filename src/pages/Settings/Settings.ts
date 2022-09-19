@@ -1,6 +1,6 @@
-import { Block } from "../../src/utils/Block";
+import { Block } from "../../utils/Block";
 import template from "./settings.hbs";
-import { getFormData } from "../../src/helpers/getFormData";
+import { getFormData } from "../../helpers/getFormData";
 
 export class SettingsPage extends Block {
   constructor() {

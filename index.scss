@@ -1,8 +1,8 @@
 @use "src/styles/variables";
-@import "pages/Login/login";
-@import "pages/Error/error";
-@import "pages/Profile/profile";
-@import "pages/Messenger/messenger";
+@import "src/pages/Login/login";
+@import "src/pages/Error/error";
+@import "src/pages/Profile/profile";
+@import "src/pages/Messenger/messenger";
 @import "src/components/DialogInfo/dialogInfo";
 
 * {
