@@ -48,7 +48,7 @@ export class HTTPTransport {
       const xhr = new XMLHttpRequest();
 
       xhr.open(method || Methods.GET, `${this.endpoint}${url}`);
-      xhr.setRequestHeader("Content-Type", "text/plain");
+      xhr.setRequestHeader("Content-Type", "application/json");
 
       if (headers) {
         Object.entries(headers).forEach((item) => {

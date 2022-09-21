@@ -1,5 +1,6 @@
 import { Block } from "../../utils/Block";
 import template from "./button.hbs";
+import styles from "./styles.module.scss";
 
 interface IButtonProps {
   label: string;
@@ -21,6 +22,6 @@ export class Button extends Block {
   }
 
   render() {
-    return this.compile(template, { label: this.props.label });
+    return this.compile(template, { label: this.props.label, styles });
   }
 }

@@ -2,6 +2,8 @@ import { Block } from "../../utils/Block";
 import template from "./login.hbs";
 
 import { getFormData } from "../../helpers/getFormData";
+import AuthController from "../../controllers/AuthController";
+import { ISigninData } from "../../api/AuthAPI";
 
 export class LoginPage extends Block {
   constructor() {
@@ -10,7 +12,9 @@ export class LoginPage extends Block {
 
   handleSubmit(e: Event) {
     e.preventDefault();
-    getFormData();
+    const signinData = getFormData();
+
+    AuthController.signin(signinData as ISigninData);
   }
 
   render() {

@@ -3,15 +3,13 @@
         <form class="form">
             <h1>Регистрация</h1>
 
-            {{{LabelInput label="Логин" name="login" validation="login"}}}
             {{{LabelInput label="Имя" name="first_name" validation="name"}}}
             {{{LabelInput label="Фамилия" name="second_name" validation="name"}}}
-            {{{LabelInput label="Отображаемое имя" name="display_name" validation="name"}}}
+            {{{LabelInput label="Логин" name="login" validation="login"}}}
             {{{LabelInput label="Почта" name="email" type="email" validation="email"}}}
+            {{{LabelInput label="Пароль" name="password" type="password" validation="password"}}}
             {{{LabelInput label="Телефон" name="phone" type="tel" validation="phone"}}}
-            {{{LabelInput label="Аватар" name="avatar" type="file"}}}
-            {{{LabelInput label="Пароль" name="oldPassword" type="password" validation="password"}}}
-            {{{LabelInput label="Повторите пароль" name="newPassword" type="password" validation="password"}}}
+
 
             {{{Button label="Регистрация" type="submit" onClick=onClick}}}
 

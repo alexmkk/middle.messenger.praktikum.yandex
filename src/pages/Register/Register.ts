@@ -2,6 +2,7 @@ import { Block } from "../../utils/Block";
 import template from "./register.hbs";
 import { getFormData } from "../../helpers/getFormData";
 import AuthController from "../../controllers/AuthController";
+import { ISignupData } from "../../api/AuthAPI";
 
 export class RegisterPage extends Block {
   constructor() {
@@ -11,8 +12,7 @@ export class RegisterPage extends Block {
   handleSubmit(e: Event) {
     e.preventDefault();
     const signupData = getFormData();
-
-    const result = AuthController.signup(signupData as any);
+    AuthController.signup(signupData as ISignupData);
   }
 
   render() {

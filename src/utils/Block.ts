@@ -35,15 +35,20 @@ export class Block<P extends Record<string, any> = any> {
   }
 
   private _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  init() {
+  private _init() {
+    this.init();
+
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  protected init() {}
 
   private _componentDidMount() {
     this.componentDidMount();

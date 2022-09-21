@@ -1,14 +1,10 @@
-import { RecordString } from "../types/types";
-
-export const getFormData = (): RecordString => {
-  const result: RecordString = {};
+export const getFormData = () => {
+  const result: { [key: string]: any } = {};
   const nodes = document.querySelectorAll("input");
 
   nodes.forEach((input: HTMLInputElement) => {
     result[input.name] = input.value;
   });
-
-  console.log(result);
 
   return result;
 };

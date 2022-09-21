@@ -6,7 +6,7 @@ import { RegisterPage } from "./src/pages/Register/Register";
 import { ProfilePage } from "./src/pages/Profile/Profile";
 import { SettingsPage } from "./src/pages/Settings/Settings";
 import { ProfileEditPassPage } from "./src/pages/ProfileEditPass/ProfileEditPass";
-import { ChatPage } from "./src/pages/Messenger/Messenger";
+import { MessengerPage } from "./src/pages/Messenger/Messenger";
 
 // Components
 import Button from "./src/components/Button";
@@ -14,10 +14,13 @@ import Input from "./src/components/Input";
 import Info from "./src/components/Info";
 import DialogInfo from "./src/components/DialogInfo";
 import LabelInput from "./src/components/LabelInput";
-import Router from "./src/utils/Router";
 import Link from "./src/components/Link";
 
+// Utils
+import Router from "./src/utils/Router";
+import store from "./src/utils/Store";
 import { registerComponent } from "./src/utils/RegisterComponent";
+import AuthController from "./src/controllers/AuthController";
 
 registerComponent("Button", Button as any);
 registerComponent("Input", Input as any);
@@ -26,46 +29,26 @@ registerComponent("DialogInfo", DialogInfo as any);
 registerComponent("LabelInput", LabelInput as any);
 registerComponent("Link", Link as any);
 
-window.addEventListener("DOMContentLoaded", () => {
-  Router.use("/", HomePage)
+window.store = store;
+
+const authRedirectPaths = ["/"];
+
+window.addEventListener("DOMContentLoaded", async () => {
+  Router.use("/", LoginPage)
     .use("/login", LoginPage)
     .use("/signup", RegisterPage)
     .use("/profile", ProfilePage)
     .use("/settings", SettingsPage)
-    .use("/profileEditPass", ProfileEditPassPage)
-    .start();
+    .use("/profileEditPass", ProfileEditPassPage);
 
-  // const root = document.querySelector("#app")!;
+  try {
+    await AuthController.fetchUser();
 
-  // const pages: any = {
-  //   home: new HomePage({ title: "Главная" }),
-  //   login: new LoginPage({ title: "Авторизация" }),
-  //   signin: new SignInPage({ title: "Регистрация" }),
-  //   error404: new ErrorPage({ text: "Не туда попали", error: 400 }),
-  //   error500: new ErrorPage({
-  //     text: "Что-то пошло не так",
-  //     error: 500,
-  //   }),
-  //   profile: new ProfilePage({ title: "Профиль" }),
-  //   profileEdit: new ProfileEditPage({
-  //     title: "Редактировать профиль",
-  //   }),
-  //   profileEditPass: new ProfileEditPassPage({ title: "Изменить пароль" }),
-  //   chat: new ChatPage({ title: "Чат", isChatSelected: false }),
-  //   chatSelected: new ChatPage({ title: "Чат", isChatSelected: true }),
-  // };
-  //
-  // const getPage = () => {
-  //   const url = window.location.search;
-  //
-  //   if (url) {
-  //     const formattedUrl = url.split("=")[1];
-  //
-  //     root.append(pages[formattedUrl].getContent()!);
-  //   } else {
-  //     root.append(pages.home.getContent()!);
-  //   }
-  // };
-  //
-  // getPage();
+    Router.start();
+    if (authRedirectPaths.includes(window.location.pathname)) {
+      Router.go("/profile");
+    }
+  } catch (e) {
+    Router.start();
+  }
 });

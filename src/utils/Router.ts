@@ -24,7 +24,7 @@ class Router {
     return this;
   }
 
-  start() {
+  public start() {
     window.onpopstate = (event: PopStateEvent) => {
       const target = event.currentTarget as Window;
 
@@ -37,12 +37,12 @@ class Router {
   private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
 
-    if (this.currentRoute && this.currentRoute !== route) {
-      this.currentRoute.leave();
-    }
-
     if (!route) {
       return;
+    }
+
+    if (this.currentRoute && this.currentRoute !== route) {
+      this.currentRoute.leave();
     }
 
     this.currentRoute = route;

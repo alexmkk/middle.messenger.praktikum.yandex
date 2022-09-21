@@ -32,9 +32,7 @@ export class Route {
   }
 
   leave() {
-    if (this.block) {
-      this.block.hide();
-    }
+    this.block = null;
   }
 
   match(pathname: string) {

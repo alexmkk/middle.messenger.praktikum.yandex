@@ -8,15 +8,25 @@ interface IInputProps {
   type?: string;
   onFocus?: () => void;
   onBlur?: () => void;
+  id?: string;
 }
 
 export class Input extends Block {
-  constructor({ type = "text", name, value = "", placeholder = "", onFocus, onBlur }: IInputProps) {
+  constructor({
+    type = "text",
+    name,
+    value = "",
+    placeholder = "",
+    onFocus,
+    onBlur,
+    id,
+  }: IInputProps) {
     super({
       name,
       type,
       value,
       placeholder,
+      id,
       events: {
         focus: onFocus,
         blur: onBlur,
@@ -26,9 +36,7 @@ export class Input extends Block {
 
   render() {
     return this.compile(template, {
-      name: this.props.name,
-      type: this.props.type,
-      value: this.props.value,
+      ...this.props,
       placeholder: this.props.placeholder,
     });
   }

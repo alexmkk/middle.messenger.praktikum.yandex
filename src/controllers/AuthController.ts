@@ -1,4 +1,6 @@
 import API, { AuthAPI, ISigninData, ISignupData } from "../api/AuthAPI";
+import store from "../utils/Store";
+import router from "../utils/Router";
 
 export class AuthController {
   private readonly api: AuthAPI;
@@ -8,19 +10,45 @@ export class AuthController {
   }
 
   async signin(data: ISigninData) {
-    await this.api.signin(data);
+    try {
+      await this.api.signin(data);
+
+      router.go("/profile");
+    } catch (e) {
+      console.error(e.message);
+    }
   }
 
   async signup(data: ISignupData) {
-    await this.api.signup(data);
+    try {
+      await this.api.signup(data);
+
+      await this.fetchUser();
+
+      router.go("/profile");
+    } catch (e) {
+      console.error(e.message);
+    }
   }
 
   async fetchUser() {
-    await this.api.read();
+    try {
+      const user = await this.api.read();
+
+      store.set("user", user);
+    } catch (e) {
+      console.error(e.message);
+    }
   }
 
   async logout() {
-    await this.api.logout();
+    try {
+      await this.api.logout();
+
+      router.go("/login");
+    } catch (e) {
+      console.error(e.message);
+    }
   }
 }
 

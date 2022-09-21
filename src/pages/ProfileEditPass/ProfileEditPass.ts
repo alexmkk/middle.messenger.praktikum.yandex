@@ -1,15 +1,15 @@
 import { Block } from "../../utils/Block";
 import template from "./profileEditPass.hbs";
 import { getFormData } from "../../helpers/getFormData";
+import UserController from "../../controllers/UserController";
+import { IChangePassword } from "../../api/UserAPI";
 
 export class ProfileEditPassPage extends Block {
-  constructor() {
-    super({});
-  }
-
   handleSubmit(e: Event) {
     e.preventDefault();
-    getFormData();
+    const updatePasswordData = getFormData();
+
+    UserController.updatePassword(updatePasswordData as IChangePassword);
   }
 
   render() {

@@ -3,20 +3,21 @@
         <h1>Профиль</h1>
         <div class="profile-content__avatar flex-center">
             <div class="avatar-image" title="Изменить аватар"></div>
-            <p class="text-bold">Александр</p>
+            <p class="text-bold">{{first_name}}</p>
         </div>
         <div class="profile-content__informations">
-            {{{Info param="Почта" value="pochta@yandex.ru"}}}
-            {{{Info param="Логин" value="alex"}}}
-            {{{Info param="Имя" value="Alexander"}}}
-            {{{Info param="Фамилия" value="Mkk"}}}
-            {{{Info param="Имя в чате" value="Alex"}}}
-            {{{Info param="Телефон" value="+7 (909) 967 30 30"}}}
+            {{{Info param="Почта" value=email}}}
+            {{{Info param="Логин" value=login}}}
+            {{{Info param="Имя" value=first_name}}}
+            {{{Info param="Фамилия" value=second_name}}}
+            {{{Info param="Имя в чате" value=display_name}}}
+            {{{Info param="Телефон" value=phone}}}
         </div>
         <div class="profile-content__buttons">
             {{{Link label="Изменить данные" to="/settings"}}}
             {{{Link label="Изменить пароль" to="/profileEditPass"}}}
-            {{{Link label="Выйти" to="/logout"}}}
+
+            {{{Button label="Выйти" onClick=onLogout}}}
         </div>
     </div>
 </div>
