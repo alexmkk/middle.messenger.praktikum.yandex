@@ -17,4 +17,7 @@
             </div>
         </form>
     </div>
+    {{#if notice}}
+        {{{Notice text=notice.text success=success error=notice.error}}}
+    {{/if}}
 </div>

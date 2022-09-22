@@ -15,8 +15,10 @@ interface IOption {
   headers?: RecordString;
 }
 
+export const API_URL = "https://ya-praktikum.tech/api/v2";
+
 export class HTTPTransport {
-  static API_URL = "https://ya-praktikum.tech/api/v2";
+  static API_URL = API_URL;
   protected endpoint: string;
 
   constructor(endpoint: string) {
@@ -44,16 +46,22 @@ export class HTTPTransport {
   request = (url: string, options: IOption = { method: Methods.GET }): Promise<any> => {
     const { headers, data, method } = options;
 
+    const isFormData = headers?.["Content-Type"] === "multipart/form-data";
+
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
       xhr.open(method || Methods.GET, `${this.endpoint}${url}`);
-      xhr.setRequestHeader("Content-Type", "application/json");
+      if (!isFormData) {
+        xhr.setRequestHeader("Content-Type", "application/json");
+      }
 
       if (headers) {
         Object.entries(headers).forEach((item) => {
           const [key, value] = item;
-          xhr.setRequestHeader(key, value);
+          if (!isFormData) {
+            xhr.setRequestHeader(key, value);
+          }
         });
       }
 
@@ -80,6 +88,8 @@ export class HTTPTransport {
 
       if (method === Methods.GET || !data) {
         xhr.send();
+      } else if (isFormData) {
+        xhr.send(data as XMLHttpRequestBodyInit);
       } else {
         xhr.send(JSON.stringify(data));
       }

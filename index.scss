@@ -1,7 +1,7 @@
 @use "src/styles/variables";
 @import "src/pages/Login/login";
 @import "src/pages/Error/error";
-@import "src/pages/Profile/profile";
+@import "src/pages/Profile/styles.module";
 @import "src/pages/Messenger/messenger";
 @import "src/components/DialogInfo/dialogInfo";
 
@@ -49,6 +49,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .flex {

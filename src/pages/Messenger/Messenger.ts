@@ -5,7 +5,7 @@ interface IMessengerPageProps {
   isChatSelected?: boolean;
 }
 
-export class MessengerPage extends Block<IMessengerPageProps> {
+export class MessengerPage extends Block {
   constructor(props: IMessengerPageProps) {
     super(props);
   }

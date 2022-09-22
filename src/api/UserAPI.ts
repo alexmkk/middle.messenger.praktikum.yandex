@@ -28,10 +28,10 @@ export class UserAPI extends BaseAPI {
   }
 
   read(id: string): Promise<IUserInfoData> {
-    return this.http.get(`/user/${id}`, {});
+    return this.http.get(`/${id}`, {});
   }
 
-  updateAvatar(data: any) {
+  updateAvatar(data: FormData) {
     return this.http.put("/profile/avatar", {
       data,
       headers: { "Content-Type": "multipart/form-data" },

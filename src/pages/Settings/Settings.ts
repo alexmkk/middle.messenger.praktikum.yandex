@@ -8,14 +8,17 @@ import { withUser } from "../Profile/Profile";
 export class SettingsPageBase extends Block {
   handleSubmit(e: Event) {
     e.preventDefault();
+
     const updateProfileData = getFormData();
-
-    // UserController.updateProfile(updateProfileData as IUserProfileData);
-
-    const selectedFile = document.getElementById("avatar")!.files[0];
+    const avatar = document.getElementById("avatar") as HTMLInputElement | null;
     const formData = new FormData();
-    formData.append("avatar", selectedFile);
-    UserController.updateAvatar(formData);
+
+    if (avatar && avatar.files?.[0]) {
+      formData.append("avatar", avatar.files?.[0]);
+      UserController.updateAvatar(formData);
+    }
+
+    UserController.updateProfile(updateProfileData as IUserProfileData);
   }
 
   render() {

@@ -15,6 +15,8 @@ import Info from "./src/components/Info";
 import DialogInfo from "./src/components/DialogInfo";
 import LabelInput from "./src/components/LabelInput";
 import Link from "./src/components/Link";
+import Avatar from "./src/components/Avatar";
+import Notice from "./src/components/Notice";
 
 // Utils
 import Router from "./src/utils/Router";
@@ -28,6 +30,8 @@ registerComponent("Info", Info as any);
 registerComponent("DialogInfo", DialogInfo as any);
 registerComponent("LabelInput", LabelInput as any);
 registerComponent("Link", Link as any);
+registerComponent("Avatar", Avatar as any);
+registerComponent("Notice", Notice as any);
 
 window.store = store;
 
@@ -39,6 +43,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     .use("/signup", RegisterPage)
     .use("/profile", ProfilePage)
     .use("/settings", SettingsPage)
+    .use("/messenger", MessengerPage)
     .use("/profileEditPass", ProfileEditPassPage);
 
   try {

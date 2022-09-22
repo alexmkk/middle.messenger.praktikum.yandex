@@ -1,11 +1,11 @@
 <div class="wrapper flex-center">
-    <div class="profile-content flex-center">
+    <div class="{{styles.content}}">
         <h1>Профиль</h1>
-        <div class="profile-content__avatar flex-center">
-            <div class="avatar-image" title="Изменить аватар"></div>
+        <div class="{{styles.avatar}}">
+            {{{ Avatar path=avatar width=150 height=150}}}
             <p class="text-bold">{{first_name}}</p>
         </div>
-        <div class="profile-content__informations">
+        <div class="{{styles.informations}}">
             {{{Info param="Почта" value=email}}}
             {{{Info param="Логин" value=login}}}
             {{{Info param="Имя" value=first_name}}}
@@ -13,7 +13,8 @@
             {{{Info param="Имя в чате" value=display_name}}}
             {{{Info param="Телефон" value=phone}}}
         </div>
-        <div class="profile-content__buttons">
+        <div class="{{styles.buttons}}">
+            {{{Link label="Перейти в чат" to="/messenger"}}}
             {{{Link label="Изменить данные" to="/settings"}}}
             {{{Link label="Изменить пароль" to="/profileEditPass"}}}
 
