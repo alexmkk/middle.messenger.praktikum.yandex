@@ -15,6 +15,8 @@ interface IState {
     error: string;
     success: string;
   };
+  activeChat: number;
+  newChatId: number;
 }
 
 export class Store extends EventBus {
@@ -49,7 +51,6 @@ export function withStore(mapStateToProps: (state: any) => any) {
           if (isEqualObject(prevState, stateProps)) {
             return;
           }
-
           prevState = stateProps;
 
           this.setProps({ ...stateProps });

@@ -1,6 +1,8 @@
 @use "src/styles/variables";
+@use "src/styles/mixins";
 
-.dialogs__item {
+.dialogs_item {
+  display: flex;
   justify-content: space-between;
   gap: 10px;
   border-top: 1px solid variables.$color-gray-light;
@@ -13,14 +15,14 @@
     background: #ececf1;
   }
 
-  &__photo {
+  .avatar {
     width: 50px;
     height: 50px;
     background: #d6d6d6;
     border-radius: 50px;
   }
 
-  &__user {
+  .title {
     flex: 1 1;
 
     p {
@@ -32,16 +34,18 @@
     }
   }
 
-  &__info {
+  .info {
     align-items: flex-end;
     justify-content: space-between;
 
-    .dialogs__time {
+    .time {
       color: variables.$color-gray;
       font-size: 11px;
     }
 
-    .dialogs__counter {
+    .counter {
+      @include mixins.flex-center;
+
       background: #3369f3;
       border-radius: 50px;
       text-align: center;
@@ -52,7 +56,11 @@
     }
   }
 
-  .preview-message {
+  .last_message {
     color: variables.$color-gray;
   }
+}
+
+.active {
+  background: #ececf1;
 }

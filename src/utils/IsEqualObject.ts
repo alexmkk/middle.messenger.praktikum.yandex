@@ -1,16 +1,59 @@
-import { Indexed } from "../types/types";
+// import { Indexed } from "../types/types";
+//
+// export function isEqualObject(a: Indexed, b: Indexed): boolean {
+//   const keysA = Object.keys(a);
+//
+//   for (const key of keysA) {
+//     const valA = a[key] as Indexed;
+//     const valB = b[key] as Indexed;
+//     const areObjects: boolean =
+//       typeof valA === "object" && typeof valB === "object" && valA !== null && valB !== null;
+//     if ((areObjects && !isEqualObject(valA, valB)) || (!areObjects && valA !== valB)) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
-export function isEqualObject(a: Indexed, b: Indexed): boolean {
-  const keysA = Object.keys(a);
+type PlainObject<T = any> = {
+  [k in string]: T;
+};
 
-  for (const key of keysA) {
-    const valA = a[key] as Indexed;
-    const valB = b[key] as Indexed;
-    const areObjects: boolean =
-      typeof valA === "object" && typeof valB === "object" && valA !== null && valB !== null;
-    if ((areObjects && !isEqualObject(valA, valB)) || (!areObjects && valA !== valB)) {
+function isPlainObject(value: unknown): value is PlainObject {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    value.constructor === Object &&
+    Object.prototype.toString.call(value) === "[object Object]"
+  );
+}
+
+function isArray(value: unknown): value is [] {
+  return Array.isArray(value);
+}
+
+function isArrayOrObject(value: unknown): value is [] | PlainObject {
+  return isPlainObject(value) || isArray(value);
+}
+
+export function isEqualObject(lhs: PlainObject, rhs: PlainObject) {
+  if (Object.keys(lhs).length !== Object.keys(rhs).length) {
+    return false;
+  }
+
+  for (const [key, value] of Object.entries(lhs)) {
+    const rightValue = rhs[key];
+    if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
+      if (isEqualObject(value, rightValue)) {
+        continue;
+      }
+      return false;
+    }
+
+    if (value !== rightValue) {
       return false;
     }
   }
+
   return true;
 }

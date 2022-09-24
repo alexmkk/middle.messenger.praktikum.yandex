@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+}
+
+.photo {
+  width: 35px;
+  height: 35px;
+  background: #d6d6d6;
+  border-radius: 50px;
+}
+
+.username {
+  flex: 1;
+}
+
+.moreInfo {
+  font-size: 20px;
+}

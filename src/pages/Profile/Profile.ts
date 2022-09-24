@@ -15,7 +15,6 @@ class ProfilePageBase extends Block {
     const handleLogout = () => {
       AuthController.logout();
     };
-
     const avatar_path = this.props.avatar;
 
     return this.compile(template, {

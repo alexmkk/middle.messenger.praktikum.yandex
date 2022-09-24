@@ -1,17 +1,20 @@
 @use "../../styles/variables";
 
-.chat-wrapper {
+.chat {
   display: flex;
 
-  .chat-dialogs {
+  .dialogs {
     gap: 20px;
     background: #f8f7fa;
     flex: 0 1 350px;
     border-right: 1px solid variables.$color-gray-light;
 
-    &__info {
+    .info {
       text-align: right;
       padding: 20px 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
       a {
         color: variables.$color-gray;
@@ -19,7 +22,7 @@
       }
     }
 
-    &__search {
+    .search {
       padding: 0 10px;
 
       input {
@@ -30,7 +33,7 @@
       }
     }
 
-    &__content {
+    .content {
       flex: 1 1 400px;
       overflow-y: auto;
     }
@@ -40,29 +43,7 @@
     padding: 10px 20px;
     flex: 1;
 
-    &__header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding-bottom: 10px;
-    }
-
-    &__photo {
-      width: 35px;
-      height: 35px;
-      background: #d6d6d6;
-      border-radius: 50px;
-    }
-
-    &__username {
-      flex: 1;
-    }
-
-    &__moreInfo {
-      font-size: 20px;
-    }
-
-    &__content {
+    .dialog-content {
       padding: 10px 0;
       display: flex;
       flex: 1;
@@ -106,7 +87,7 @@
       }
     }
 
-    &__message {
+    .dialog-message {
       gap: 14px;
       padding: 10px;
 

@@ -4,15 +4,19 @@ import styles from "./styles.module.scss";
 
 interface IButtonProps {
   label: string;
+  width?: number;
   onClick?: () => void;
   onFocus?: () => void;
   onBlur?: () => void;
 }
 
+const DEFAULT_WIDTH = 120;
+
 export class Button extends Block {
-  constructor({ label, onClick, onFocus, onBlur }: IButtonProps) {
+  constructor({ label, onClick, onFocus, onBlur, width }: IButtonProps) {
     super({
       label,
+      width: width || DEFAULT_WIDTH,
       events: {
         click: onClick,
         focus: onFocus,
@@ -22,6 +26,6 @@ export class Button extends Block {
   }
 
   render() {
-    return this.compile(template, { label: this.props.label, styles });
+    return this.compile(template, { label: this.props.label, width: this.props.width, styles });
   }
 }

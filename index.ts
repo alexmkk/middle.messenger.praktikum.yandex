@@ -8,6 +8,9 @@ import { SettingsPage } from "./src/pages/Settings/Settings";
 import { ProfileEditPassPage } from "./src/pages/ProfileEditPass/ProfileEditPass";
 import { MessengerPage } from "./src/pages/Messenger/Messenger";
 
+// Api
+import AuthController from "./src/controllers/AuthController";
+
 // Components
 import Button from "./src/components/Button";
 import Input from "./src/components/Input";
@@ -17,12 +20,13 @@ import LabelInput from "./src/components/LabelInput";
 import Link from "./src/components/Link";
 import Avatar from "./src/components/Avatar";
 import Notice from "./src/components/Notice";
+import Modal from "./src/components/Modal";
+import DialogHeader from "./src/components/DialogHeader";
 
 // Utils
 import Router from "./src/utils/Router";
 import store from "./src/utils/Store";
 import { registerComponent } from "./src/utils/RegisterComponent";
-import AuthController from "./src/controllers/AuthController";
 
 registerComponent("Button", Button as any);
 registerComponent("Input", Input as any);
@@ -32,6 +36,8 @@ registerComponent("LabelInput", LabelInput as any);
 registerComponent("Link", Link as any);
 registerComponent("Avatar", Avatar as any);
 registerComponent("Notice", Notice as any);
+registerComponent("Modal", Modal as any);
+registerComponent("DialogHeader", DialogHeader as any);
 
 window.store = store;
 
