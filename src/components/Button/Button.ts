@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 interface IButtonProps {
   label: string;
   width?: number;
+  id?: number;
   onClick?: () => void;
   onFocus?: () => void;
   onBlur?: () => void;
@@ -13,10 +14,11 @@ interface IButtonProps {
 const DEFAULT_WIDTH = 120;
 
 export class Button extends Block {
-  constructor({ label, onClick, onFocus, onBlur, width }: IButtonProps) {
+  constructor({ label, onClick, onFocus, onBlur, width, id }: IButtonProps) {
     super({
       label,
       width: width || DEFAULT_WIDTH,
+      id,
       events: {
         click: onClick,
         focus: onFocus,
@@ -26,6 +28,6 @@ export class Button extends Block {
   }
 
   render() {
-    return this.compile(template, { label: this.props.label, width: this.props.width, styles });
+    return this.compile(template, { ...this.props, styles });
   }
 }

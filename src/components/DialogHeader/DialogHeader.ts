@@ -1,33 +1,26 @@
 import template from "./dialogHeader.hbs";
 import { Block } from "../../utils/Block";
 import styles from "./styles.module.scss";
-import store, { withStore } from "../../utils/Store";
-import ChatsController from "../../controllers/ChatController";
-import { isEqualObject } from "../../utils/IsEqualObject";
+import ChatController from "../../controllers/ChatController";
 
 export class DialogHeader extends Block {
   constructor(props: any) {
     super({ ...props });
   }
 
-  // componentDidUpdate(_oldProps: any, _newProps: any): boolean {
-  //   if (!isEqualObject(_oldProps, _newProps)) {
-  //     console.log("_oldProps", _oldProps, _newProps);
-  //     const chatInfo = ChatsController.getChatInfoById(_newProps.activeChat);
-  //     if (chatInfo?.length) {
-  //       this.setProps({ title: chatInfo[0].title });
-  //     }
-  //     return true;
-  //   }
-  //
-  //   return false;
-  // }
-
   render() {
+    const handleDeleteDialog = (e: Event) => {
+      e.preventDefault();
+      ChatController.removeChat(this.props.activeChatId);
+      this.setProps({ activeChat: "" });
+    };
+
     return this.compile(template, {
       ...this.props,
+      children: this.children,
+      onDelete: handleDeleteDialog,
+      onAddUser: this.props.showUsersForm,
       styles,
     });
   }
 }
-//

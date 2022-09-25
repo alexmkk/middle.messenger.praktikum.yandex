@@ -1,13 +1,22 @@
 import { Indexed } from "../types/types";
 
-export function merge(left: Indexed, right: Indexed): Indexed {
-  for (const n in right) {
-    if (typeof left[n] != "object") {
-      left[n] = right[n];
-    } else if (typeof right[n] === "object") {
-      left[n] = merge(left[n] as Indexed, right[n] as Indexed);
+export function merge(lhs: Indexed, rhs: Indexed): Indexed {
+  for (const p in rhs) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (!rhs.hasOwnProperty(p)) {
+      continue;
+    }
+
+    try {
+      if (rhs[p].constructor === Object) {
+        rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
+      } else {
+        lhs[p] = rhs[p];
+      }
+    } catch (e) {
+      lhs[p] = rhs[p];
     }
   }
 
-  return left;
+  return lhs;
 }

@@ -24,6 +24,8 @@
 
     .search {
       padding: 0 10px;
+      display: flex;
+      gap: 10px;
 
       input {
         width: 95%;
@@ -38,80 +40,9 @@
       overflow-y: auto;
     }
   }
+}
 
-  .single-dialog {
-    padding: 10px 20px;
-    flex: 1;
-
-    .dialog-content {
-      padding: 10px 0;
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      border-top: 1px solid variables.$color-gray-light;
-      border-bottom: 1px solid variables.$color-gray-light;
-
-      div {
-        padding: 10px;
-        border-radius: 10px;
-        margin: 10px 0;
-        position: relative;
-        min-width: 100px;
-      }
-
-      .dialog-time {
-        text-align: center;
-        color: variables.$color-gray;
-        font-size: 12px;
-      }
-
-      .message-time {
-        position: absolute;
-        color: variables.$color-gray;
-        bottom: 4px;
-        right: 8px;
-        font-size: 10px;
-      }
-
-      .left-message {
-        max-width: 48%;
-        background: #f8f8f8;
-        border: 1px solid variables.$color-gray-light;
-        align-self: flex-start;
-      }
-
-      .right-message {
-        max-width: 48%;
-        background: #e4edfd;
-        align-self: flex-end;
-      }
-    }
-
-    .dialog-message {
-      gap: 14px;
-      padding: 10px;
-
-      input {
-        width: 90%;
-        background: variables.$color-gray-second;
-        border: 1px solid variables.$color-gray;
-        padding: 5px 15px;
-        border-radius: 15px;
-      }
-
-      .attach {
-        background: url("/static/svg/attach.svg") center center no-repeat;
-      }
-
-      .arrow-right {
-        background: url("/static/svg/arrow.svg") center center no-repeat;
-      }
-    }
-  }
-
-  .page-button {
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-  }
+.single-dialog {
+  padding: 10px 20px;
+  flex: 1;
 }

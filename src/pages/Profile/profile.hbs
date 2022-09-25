@@ -2,7 +2,9 @@
     <div class="{{styles.content}}">
         <h1>Профиль</h1>
         <div class="{{styles.avatar}}">
-            {{{ Avatar path=avatar width=150 height=150}}}
+            {{#if avatar}}
+                {{{ Avatar path=avatar width=150 height=150}}}
+            {{/if}}
             <p class="text-bold">{{first_name}}</p>
         </div>
         <div class="{{styles.informations}}">

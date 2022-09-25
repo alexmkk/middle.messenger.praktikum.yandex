@@ -1,5 +1,6 @@
 import API, { ChatAPI, IChatsGet, IChatUser } from "../api/ChatAPI";
 import store from "../utils/Store";
+import { NotificationTypes, showNotification } from "../utils/ShowNotification";
 
 export class ChatsController {
   private readonly api: ChatAPI;
@@ -11,18 +12,19 @@ export class ChatsController {
   async fetchChats(data: IChatsGet) {
     const chats = await this.api.getChats(data);
 
+    store.set("searchChatText", data.title);
+    store.set("activeChat", null);
     store.set("chats", chats);
   }
 
   async createChat(title: string) {
     try {
-      const newChat = await this.api.createChat(title);
-      const chats = await this.api.getChats({});
-
-      store.set("chats", chats);
-      store.set("newChatId", newChat);
+      await this.api.createChat(title);
+      await this.fetchChats({});
+      store.set("activeChat", null);
+      showNotification();
     } catch (e) {
-      console.error(e.message);
+      showNotification(e.reason, NotificationTypes.Warning);
     }
   }
 
@@ -30,23 +32,32 @@ export class ChatsController {
     try {
       await this.api.getChatUsers(id, data);
 
-      const activeChatInfo = store.getState().chats.find((chat) => chat.id === id);
-      // console.log(store.getState());
       store.set("activeChat", id);
-      // store.set("activeChatInfo", activeChatInfo);
+      store.set("createChat", "");
     } catch (e) {
       console.error(e.message);
     }
   }
 
-  getChatInfoById(id: number) {
+  async removeChat(id: number) {
     try {
-      const chats = store.getState().chats;
-      const activeChat = chats.filter((chat) => chat.id === id);
+      await this.api.deleteChat(id);
+      await this.fetchChats({});
 
-      return activeChat;
+      store.set("activeChat", null);
+      showNotification();
     } catch (e) {
-      console.error(e.message);
+      showNotification(e.reason, NotificationTypes.Warning);
+    }
+  }
+
+  async addUsersToChat(data: { users: number[]; chatId: number }) {
+    try {
+      await this.api.addUsersToChat(data);
+
+      showNotification();
+    } catch (e) {
+      showNotification(e.reason, NotificationTypes.Warning);
     }
   }
 }

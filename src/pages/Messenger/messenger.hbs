@@ -1,71 +1,51 @@
 <div class="wrapper flex">
     <div class="{{styles.chat}} flex-auto">
         <div class="{{styles.dialogs}} flex-column">
-            <div class={{styles.info}}">
-                {{{Button label="Создать чат" type="submit" onClick=showCreateForm}}}
+            <div class="{{styles.info}}">
+                {{{Button label="Создать чат" onClick=onShowCreateForm}}}
                 {{{Link label="Профиль >" to="/profile"}}}
             </div>
-            <div class="{{styles.search}}">
-                {{{Input placeholder="Поиск" name="search"}}}
+            <div>
+                <form class="{{styles.search}}">
+                    {{{Input placeholder="Поиск" name="search" id="search-chat" value=searchChatText}}}
+                    {{{Button label="Искать" onClick=onSearch}}}
+                </form>
             </div>
             <div class={{styles.content}}>
                 {{#each chats}}
-                    <div>
-                        {{{DialogInfo id=id title=title last_message=last_message time="20:10" unread_count=unread_count activeChat=activeChat}}}
-                    </div>
+                    {{{DialogInfo
+                        id=id
+                        title=title
+                        last_message=last_message.content
+                        time=last_message.time
+                        unread_count=unread_count
+                        activeChat=activeChat
+                        onHideUsersForm=../onHideUsersForm
+                    }}}
                 {{/each}}
-
-                {{{DialogInfo id=11111 title="Александр" last_message="Hi!!!" time="Ср" isAnswer=true}}}
-                {{{DialogInfo id=22222 title="Александр" last_message="Hi!!!" time="01:03" unread_count=12 isManyNotifications=true}}}
             </div>
         </div>
-
+        {{#if activeChat}}
             <div class="{{styles.single-dialog}} flex-column">
-                {{{DialogHeader activeChat=activeChat}}}
-
-
-                <div class="{{styles.dialog-content}}">
-                    <div class={{styles.dialog-time}}>
-                        <time>20 августа</time>
-                    </div>
-                    <div class="left-message">
-                        Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
-
-                        Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
-                        <span class="{{styles.message-time}}">20:12</span>
-                    </div>
-                    <div class="{{styles.right-message}}">
-                        Nice!
-                        <span class="{{styles.message-time}}">20:12</span>
-                    </div>
-                </div>
-                <div class="{{styles.dialog-message}} flex-center">
-                    <div class="{{styles.page-button}} {{styles.attach}}"></div>
-                    <div class="flex-auto">
-                        {{{LabelInput name="message" placeholder="Сообщение" validation="message"}}}
-                    </div>
-                    <div class="{{styles.page-button}} {{styles.arrow-right}}"></div>
+                {{{DialogHeader activeChatTitle=activeChatTitle activeChatId=activeChat showUsersForm=onShowUsersForm}}}
+                {{#if showUsersForm}}
+                    {{{Users activeChat=activeChat}}}
+                {{else}}
+                    {{{Dialog}}}
+                {{/if}}
+            </div>
+        {{else}}
+            <div class="flex-center flex-auto">
+                <div class="form-wrapper">
+                    <form class="form">
+                        <h1>Создать чат</h1>
+                        {{{LabelInput label="Название чата" name="title"}}}
+                        {{{Button label="Создать" onClick=createChat}}}
+                    </form>
                 </div>
             </div>
-    {{#if isChatSelected}}
-        {{else}}
-            {{#if create}}
-                <div class="flex-center flex-auto">
-                    <div class="form-wrapper">
-                        <form class="form">
-                            <h1>{{create}}</h1>
-                            {{{LabelInput label="Название чата" name="title"}}}
-                            {{{Button label="Создать" type="submit" onClick=createChat}}}
-                        </form>
-                    </div>
-                </div>
-            {{else}}
-                <div class="flex-center flex-auto">
-                    <p>Выберите чат чтобы отправить сообщение</p>
-                </div>
-            {{/if}}
-
         {{/if}}
+
 
     </div>
 </div>

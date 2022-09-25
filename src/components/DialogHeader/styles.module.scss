@@ -1,8 +1,11 @@
+@use "../../styles/variables";
+
 .header {
   display: flex;
   align-items: center;
   gap: 12px;
   padding-bottom: 10px;
+  border-bottom: 1px solid variables.$color-gray-light;
 }
 
 .photo {
@@ -14,8 +17,4 @@
 
 .username {
   flex: 1;
-}
-
-.moreInfo {
-  font-size: 20px;
 }

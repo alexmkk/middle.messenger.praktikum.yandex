@@ -38,6 +38,10 @@ export class UserAPI extends BaseAPI {
     });
   }
 
+  searchUser(login: string) {
+    return this.http.post("/search", { data: { login } });
+  }
+
   create = undefined;
   update = undefined;
   delete = undefined;

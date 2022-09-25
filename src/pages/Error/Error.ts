@@ -1,14 +1,9 @@
 import { Block } from "../../utils/Block";
 import template from "./error.hbs";
 
-interface IErrorPageProps {
-  error: number;
-  text: string;
-}
-
-export class ErrorPage extends Block<IErrorPageProps> {
-  constructor(props: IErrorPageProps) {
-    super(props);
+export class ErrorPage extends Block {
+  constructor() {
+    super({});
   }
 
   render() {

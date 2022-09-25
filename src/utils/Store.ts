@@ -10,13 +10,10 @@ enum StoreEvents {
 interface IState {
   user: object;
   chats: object[];
-  notice?: {
-    text: string;
-    error: string;
-    success: string;
-  };
-  activeChat: number;
-  newChatId: number;
+  activeChat: number | null;
+  searchChatText: string;
+  searchUserText: string;
+  users: object[];
 }
 
 export class Store extends EventBus {

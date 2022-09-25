@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import ChatController from "../../controllers/ChatController";
 import { IChatUser } from "../../api/ChatAPI";
 import { withStore } from "../../utils/Store";
+import { formatDate } from "../../utils/FormatDate";
 
 interface IDialogInfoProps {
   title: string;
@@ -14,6 +15,7 @@ interface IDialogInfoProps {
   isAnswer: boolean;
   onClick?: () => void;
   activeChat?: number;
+  onHideUsersForm?: () => void;
 }
 
 export class DialogInfoBase extends Block {
@@ -21,7 +23,10 @@ export class DialogInfoBase extends Block {
     super({
       ...props,
       events: {
-        click: (e: Event) => this.handleSelect(e),
+        click: (e: Event) => {
+          this.props.onHideUsersForm(e);
+          this.handleSelect(e);
+        },
       },
     });
   }
@@ -34,9 +39,11 @@ export class DialogInfoBase extends Block {
 
   render() {
     const isActiveChat = this.props.id === this.props.activeChat;
+    const time = this.props.time;
 
     return this.compile(template, {
       ...this.props,
+      time: time ? formatDate(time) : "",
       isActiveChat,
       styles,
     });

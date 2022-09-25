@@ -8,6 +8,7 @@ interface IInputProps {
   type?: string;
   onFocus?: () => void;
   onBlur?: () => void;
+  onChange?: () => void;
   id?: string;
 }
 
@@ -19,6 +20,7 @@ export class Input extends Block {
     placeholder = "",
     onFocus,
     onBlur,
+    onChange,
     id,
   }: IInputProps) {
     super({
@@ -30,6 +32,7 @@ export class Input extends Block {
       events: {
         focus: onFocus,
         blur: onBlur,
+        change: onChange,
       },
     });
   }

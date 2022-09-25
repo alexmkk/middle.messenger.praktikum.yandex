@@ -8,27 +8,53 @@ import { withStore } from "../../utils/Store";
 class MessengerPageBase extends Block {
   init() {
     ChatController.fetchChats({});
-    this.showCreateForm = this.showCreateForm.bind(this);
-    this.handleCreateChat = this.handleCreateChat.bind(this);
   }
 
-  showCreateForm(e: Event) {
-    e.preventDefault();
-    this.setProps({ create: "Создать чат" });
-  }
+  handleShowCreateForm = () => {
+    this.setProps({ activeChat: "" });
+  };
 
-  handleCreateChat(e: Event) {
+  handleCreateChat = (e: Event) => {
     e.preventDefault();
     const { title } = getFormData();
+
     ChatController.createChat(title);
-  }
+  };
+
+  handleSearch = (e: Event) => {
+    e.preventDefault();
+    const input = document.getElementById("search-chat") as HTMLInputElement;
+
+    if (input) {
+      const value = input.value;
+      ChatController.fetchChats({ title: value });
+    }
+  };
+
+  handleShowUsersForm = () => {
+    this.setProps({ showCreateForm: "", showUsersForm: "show" });
+  };
+
+  handleHideUsersForm = (e: Event) => {
+    e.preventDefault();
+    this.setProps({ showCreateForm: "", showUsersForm: "" });
+  };
 
   render() {
+    const activeChat = (this.props.chats || []).find(
+      (chat: any) => chat.id === this.props.activeChat
+    );
+    const title = activeChat?.title;
+
     return this.compile(template, {
       ...this.props,
       children: this.children,
-      showCreateForm: this.showCreateForm,
+      onShowCreateForm: this.handleShowCreateForm,
       createChat: this.handleCreateChat,
+      onSearch: this.handleSearch,
+      onShowUsersForm: this.handleShowUsersForm,
+      onHideUsersForm: this.handleHideUsersForm,
+      activeChatTitle: title,
       styles,
     });
   }
@@ -36,9 +62,9 @@ class MessengerPageBase extends Block {
 
 const withChats = withStore((state) => {
   return {
-    ...state.newChatId,
-    chats: state.chats,
+    chats: [...(state.chats || [])],
     activeChat: state.activeChat,
+    searchChatText: state.searchChatText,
   };
 });
 

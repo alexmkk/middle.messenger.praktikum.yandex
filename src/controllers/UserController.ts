@@ -1,5 +1,6 @@
 import API, { IChangePassword, IUserProfileData, UserAPI } from "../api/UserAPI";
 import store from "../utils/Store";
+import { NotificationTypes, showNotification } from "../utils/ShowNotification";
 
 export class UserController {
   private readonly api: UserAPI;
@@ -13,24 +14,38 @@ export class UserController {
       const updatedData = await this.api.updateProfile(data);
 
       store.set("user", updatedData);
+      showNotification();
     } catch (e) {
-      console.error(e.message);
+      showNotification(e.reason, NotificationTypes.Warning);
     }
   }
 
   async updatePassword(data: IChangePassword) {
     try {
       await this.api.updatePassword(data);
+      showNotification();
     } catch (e) {
-      console.error(e.message);
+      showNotification(e.reason, NotificationTypes.Warning);
     }
   }
 
   async updateAvatar(data: any) {
     try {
       await this.api.updateAvatar(data);
+      showNotification();
     } catch (e) {
-      console.error(e.message);
+      showNotification(e.reason, NotificationTypes.Warning);
+    }
+  }
+
+  async searchUser(login: string) {
+    try {
+      const users = await this.api.searchUser(login);
+
+      store.set("searchUserText", login);
+      store.set("users", users);
+    } catch (e) {
+      showNotification(e.reason, NotificationTypes.Warning);
     }
   }
 }
