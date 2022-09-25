@@ -14,6 +14,7 @@ interface IState {
   searchChatText: string;
   searchUserText: string;
   users: object[];
+  messages: object[];
 }
 
 export class Store extends EventBus {
