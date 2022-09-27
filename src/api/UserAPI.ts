@@ -1,5 +1,5 @@
-import BaseAPI from "./BaseAPI";
-import { IUser } from "./AuthAPI";
+import { IUser } from "./interfaces";
+import { HTTPTransport } from "../utils/HTTPTransport";
 
 export type IUserProfileData = Omit<IUser, "id" | "avatar"> & {
   display_name: string;
@@ -14,16 +14,18 @@ type IUserInfoData = {
   display_name: string;
 } & IUser;
 
-export class UserAPI extends BaseAPI {
+export class UserAPI {
+  protected http: HTTPTransport;
+
   constructor() {
-    super("/user");
+    this.http = new HTTPTransport("/user");
   }
 
-  updateProfile(data: IUserProfileData) {
+  updateProfile(data: IUserProfileData): Promise<IUserInfoData> {
     return this.http.put("/profile", { data });
   }
 
-  updatePassword(data: IChangePassword) {
+  updatePassword(data: IChangePassword): Promise<void> {
     return this.http.put("/password", { data });
   }
 
@@ -31,20 +33,16 @@ export class UserAPI extends BaseAPI {
     return this.http.get(`/${id}`, {});
   }
 
-  updateAvatar(data: FormData) {
+  updateAvatar(data: FormData): Promise<IUserInfoData> {
     return this.http.put("/profile/avatar", {
       data,
       headers: { "Content-Type": "multipart/form-data" },
     });
   }
 
-  searchUser(login: string) {
+  searchUser(login: string): Promise<IUserInfoData[]> {
     return this.http.post("/search", { data: { login } });
   }
-
-  create = undefined;
-  update = undefined;
-  delete = undefined;
 }
 
 export default new UserAPI();

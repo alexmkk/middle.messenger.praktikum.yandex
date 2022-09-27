@@ -8,6 +8,7 @@ enum WebSockets {
   Error = "error",
   Close = "close",
   Ping = "ping",
+  GetOld = "get old",
 }
 
 export interface IMessage {
@@ -44,8 +45,22 @@ class MessageController {
   private readonly _handleMassage = (e: MessageEvent) => {
     const data = JSON.parse(e.data);
 
-    const messages = [data, ...store.getState().messages];
-    store.set("messages", messages);
+    if (Array.isArray(data)) {
+      if (!data.length) {
+        store.set("messages", []);
+      } else if (data[0].id === 0) {
+        store.set("messages", data);
+      } else {
+        const messages = [...data];
+
+        store.set("messages", messages);
+      }
+    } else if (typeof data === "object" && data.type === "message") {
+      const messages = [data, ...store.getState().messages];
+      store.set("messages", messages);
+    }
+
+    console.log("Получены данные", e.data);
   };
 
   private readonly _handleOpen = () => {
@@ -70,10 +85,12 @@ class MessageController {
     }
 
     if (e.wasClean) {
-      console.log("Соединение выполнено");
+      console.log("Соединение закрыто чисто");
     } else {
-      console.log("Соединение не выполнено");
+      console.log("Обрыв соединения");
     }
+
+    console.log(`Код: ${e.code} | Причина: ${e.reason}`);
   };
 
   private _reconnect() {
@@ -88,7 +105,7 @@ class MessageController {
     this._webSocket.send(
       JSON.stringify({
         content: options.offset.toString(),
-        type: "Получить сообщения",
+        type: WebSockets.GetOld,
       })
     );
   }

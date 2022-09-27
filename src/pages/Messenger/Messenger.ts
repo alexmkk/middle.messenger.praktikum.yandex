@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import ChatController from "../../controllers/ChatController";
 import { getFormData } from "../../helpers/getFormData";
 import { withStore } from "../../utils/Store";
+import { IChatInfo } from "../../api/interfaces";
 
 class MessengerPageBase extends Block {
   init() {
@@ -42,7 +43,7 @@ class MessengerPageBase extends Block {
 
   render() {
     const activeChat = (this.props.chats || []).find(
-      (chat: any) => chat.id === this.props.activeChat
+      (chat: IChatInfo) => chat.id === this.props.activeChat
     );
     const title = activeChat?.title;
 
@@ -63,6 +64,7 @@ class MessengerPageBase extends Block {
 const withChats = withStore((state) => {
   return {
     chats: [...(state.chats || [])],
+    messages: [...(state.messages?.reverse() || [])],
     activeChat: state.activeChat,
     searchChatText: state.searchChatText,
   };

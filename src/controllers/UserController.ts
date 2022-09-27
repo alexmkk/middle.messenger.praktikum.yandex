@@ -14,7 +14,7 @@ export class UserController {
       const updatedData = await this.api.updateProfile(data);
 
       store.set("user", updatedData);
-      showNotification();
+      showNotification("Данные профиля успешно обновлены");
     } catch (e) {
       showNotification(e.reason, NotificationTypes.Warning);
     }
@@ -23,7 +23,7 @@ export class UserController {
   async updatePassword(data: IChangePassword) {
     try {
       await this.api.updatePassword(data);
-      showNotification();
+      showNotification("Пароль успешно обновлен");
     } catch (e) {
       showNotification(e.reason, NotificationTypes.Warning);
     }
@@ -32,7 +32,7 @@ export class UserController {
   async updateAvatar(data: any) {
     try {
       await this.api.updateAvatar(data);
-      showNotification();
+      showNotification("Аватар успешно обновлен");
     } catch (e) {
       showNotification(e.reason, NotificationTypes.Warning);
     }

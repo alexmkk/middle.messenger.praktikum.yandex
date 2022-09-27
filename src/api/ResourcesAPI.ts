@@ -1,19 +1,18 @@
-import BaseAPI from "./BaseAPI";
+import { IFileData } from "./interfaces";
+import { HTTPTransport } from "../utils/HTTPTransport";
 
 export const RESOURCES_PATH = "resources";
 
-export class ResourcesAPI extends BaseAPI {
+export class ResourcesAPI {
+  protected http: HTTPTransport;
+
   constructor() {
-    super(`/${RESOURCES_PATH}`);
+    this.http = new HTTPTransport(`/${RESOURCES_PATH}`);
   }
 
-  read(path: string): Promise<any> {
+  read(path: string): Promise<IFileData> {
     return this.http.get(`/${path}`, {});
   }
-
-  create = undefined;
-  update = undefined;
-  delete = undefined;
 }
 
 export default new ResourcesAPI();

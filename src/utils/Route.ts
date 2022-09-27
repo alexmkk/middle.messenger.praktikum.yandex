@@ -1,19 +1,6 @@
 import { isEqual } from "./IsEqual";
 import { Block } from "./Block";
-
-function render(query: string, block: Block) {
-  const root = document.querySelector(query);
-
-  if (root === null) {
-    throw new Error(`root по селектору ${query} не найден`);
-  }
-
-  root.innerHTML = "";
-
-  root.append(block.getContent()!);
-
-  return root;
-}
+import { render } from "./Render";
 
 export class Route {
   private block: Block | null = null;

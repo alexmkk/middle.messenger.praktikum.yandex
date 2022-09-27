@@ -1,6 +1,8 @@
-import API, { AuthAPI, ISigninData, ISignupData } from "../api/AuthAPI";
+import API, { AuthAPI } from "../api/AuthAPI";
 import store from "../utils/Store";
 import router from "../utils/Router";
+import { ISigninData, ISignupData } from "../api/interfaces";
+import { NotificationTypes, showNotification } from "../utils/ShowNotification";
 
 export class AuthController {
   private readonly api: AuthAPI;
@@ -15,7 +17,7 @@ export class AuthController {
 
       router.go("/profile");
     } catch (e) {
-      console.error(e.message);
+      showNotification(e.reason, NotificationTypes.Warning);
     }
   }
 
@@ -27,7 +29,7 @@ export class AuthController {
 
       router.go("/profile");
     } catch (e) {
-      console.error(e.message);
+      showNotification(e.reason, NotificationTypes.Warning);
     }
   }
 
@@ -39,7 +41,7 @@ export class AuthController {
 
       return user;
     } catch (e) {
-      console.error(e.message);
+      showNotification(e.reason, NotificationTypes.Warning);
     }
   }
 
@@ -49,7 +51,7 @@ export class AuthController {
 
       router.go("/login");
     } catch (e) {
-      console.error(e.message);
+      showNotification(e.reason, NotificationTypes.Warning);
     }
   }
 }

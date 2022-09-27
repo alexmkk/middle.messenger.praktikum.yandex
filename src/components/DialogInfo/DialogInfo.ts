@@ -2,9 +2,11 @@ import { Block } from "../../utils/Block";
 import template from "./dialogInfo.hbs";
 import styles from "./styles.module.scss";
 import ChatController from "../../controllers/ChatController";
-import { IChatUser } from "../../api/ChatAPI";
-import { withStore } from "../../utils/Store";
+
+import store, { withStore } from "../../utils/Store";
 import { formatDate } from "../../utils/FormatDate";
+import { IChatUser } from "../../api/interfaces";
+import MessageController from "../../controllers/MessageController";
 
 interface IDialogInfoProps {
   title: string;
@@ -31,10 +33,18 @@ export class DialogInfoBase extends Block {
     });
   }
 
-  handleSelect(e: Event) {
+  async handleSelect(e: Event) {
     const target = e.currentTarget as HTMLDivElement;
+    const chatId = Number(target.id);
 
-    ChatController.getChatUsers(Number(target.id), {} as IChatUser);
+    await ChatController.getChatUsers(chatId, {} as IChatUser);
+    const token = await ChatController.getChatToken(chatId);
+
+    if (token) {
+      const userId = store.getState().user.id;
+
+      MessageController.connect({ userId, chatId, token: token.token });
+    }
   }
 
   render() {
@@ -43,7 +53,7 @@ export class DialogInfoBase extends Block {
 
     return this.compile(template, {
       ...this.props,
-      time: time ? formatDate(time) : "",
+      time: time ? formatDate(time).date : "",
       isActiveChat,
       styles,
     });

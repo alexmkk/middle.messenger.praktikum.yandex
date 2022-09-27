@@ -19,10 +19,10 @@ import LabelInput from "./src/components/LabelInput";
 import Link from "./src/components/Link";
 import Avatar from "./src/components/Avatar";
 import Notice from "./src/components/Notice";
-import Modal from "./src/components/Modal";
 import DialogHeader from "./src/components/DialogHeader";
 import Dialog from "./src/components/Dialog";
 import Users from "./src/components/Users";
+import DialogMessage from "./src/components/DialogMessage";
 
 // Utils
 import Router from "./src/utils/Router";
@@ -38,10 +38,10 @@ registerComponent("LabelInput", LabelInput as any);
 registerComponent("Link", Link as any);
 registerComponent("Avatar", Avatar as any);
 registerComponent("Notice", Notice as any);
-registerComponent("Modal", Modal as any);
 registerComponent("DialogHeader", DialogHeader as any);
 registerComponent("Dialog", Dialog as any);
 registerComponent("Users", Users as any);
+registerComponent("DialogMessage", DialogMessage as any);
 registerHelpers();
 
 (window as any).store = store;

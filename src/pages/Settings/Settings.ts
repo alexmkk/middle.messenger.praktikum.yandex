@@ -4,6 +4,7 @@ import { getFormData } from "../../helpers/getFormData";
 import UserController from "../../controllers/UserController";
 import { IUserProfileData } from "../../api/UserAPI";
 import { withUser } from "../Profile/Profile";
+import { getFirstFile } from "../../utils/GetFirstFile";
 
 export class SettingsPageBase extends Block {
   handleSubmit(e: Event) {
@@ -13,8 +14,8 @@ export class SettingsPageBase extends Block {
     const avatar = document.getElementById("avatar") as HTMLInputElement | null;
     const formData = new FormData();
 
-    if (avatar && avatar.files?.[0]) {
-      formData.append("avatar", avatar.files?.[0]);
+    if (avatar && getFirstFile(avatar)) {
+      formData.append("avatar", getFirstFile(avatar));
       UserController.updateAvatar(formData);
     }
 

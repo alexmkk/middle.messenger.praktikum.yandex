@@ -2,19 +2,21 @@ import { set } from "../helpers/set";
 import { EventBus } from "./EventBus";
 import { Block } from "./Block";
 import { isEqualObject } from "./IsEqualObject";
+import { IChatInfo, IChatUsers, IMessage, IUser } from "../api/interfaces";
 
 enum StoreEvents {
   UPDATED = "updated",
 }
 
 interface IState {
-  user: object;
-  chats: object[];
+  user: IUser;
+  chats: IChatInfo[];
   activeChat: number | null;
   searchChatText: string;
   searchUserText: string;
-  users: object[];
-  messages: object[];
+  users: IChatUsers[];
+  usersInChat: IChatUsers[];
+  messages: IMessage[];
 }
 
 export class Store extends EventBus {
