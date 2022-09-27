@@ -16,8 +16,11 @@ export class Dialog extends Block {
   }
 
   render() {
+    const reverseMessages = this.props.messages.reverse();
+
     return this.compile(template, {
       ...this.props,
+      messages: reverseMessages,
       onSend: this.handleSend,
       children: this.children,
       styles,

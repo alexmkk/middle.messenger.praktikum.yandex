@@ -64,7 +64,7 @@ class MessengerPageBase extends Block {
 const withChats = withStore((state) => {
   return {
     chats: [...(state.chats || [])],
-    messages: [...(state.messages?.reverse() || [])],
+    messages: [...(state.messages || [])],
     activeChat: state.activeChat,
     searchChatText: state.searchChatText,
   };
