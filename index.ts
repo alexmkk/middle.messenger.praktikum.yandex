@@ -1,60 +1,73 @@
 // Pages
-import { HomePage } from "./pages/Home/Home";
-import { ErrorPage } from "./pages/Error/Error";
-import { LoginPage } from "./pages/Login/Login";
-import { SignInPage } from "./pages/SignIn/SignIn";
-import { ProfilePage } from "./pages/Profile/Profile";
-import { ProfileEditPage } from "./pages/ProfileEdit/ProfileEdit";
-import { ProfileEditPassPage } from "./pages/ProfileEditPass/ProfileEditPass";
-import { ChatPage } from "./pages/Chat/Chat";
+import { ErrorPage } from "./src/pages/Error/Error";
+import { LoginPage } from "./src/pages/Login/Login";
+import { RegisterPage } from "./src/pages/Register/Register";
+import { ProfilePage } from "./src/pages/Profile/Profile";
+import { SettingsPage } from "./src/pages/Settings/Settings";
+import { ProfileEditPassPage } from "./src/pages/ProfileEditPass/ProfileEditPass";
+import { MessengerPage } from "./src/pages/Messenger/Messenger";
+
+// Api
+import AuthController from "./src/controllers/AuthController";
 
 // Components
 import Button from "./src/components/Button";
 import Input from "./src/components/Input";
 import Info from "./src/components/Info";
 import DialogInfo from "./src/components/DialogInfo";
-import { LabelInput } from "./src/components/LabelInput/LabelInput";
+import LabelInput from "./src/components/LabelInput";
+import Link from "./src/components/Link";
+import Avatar from "./src/components/Avatar";
+import Notice from "./src/components/Notice";
+import DialogHeader from "./src/components/DialogHeader";
+import Dialog from "./src/components/Dialog";
+import Users from "./src/components/Users";
+import DialogMessage from "./src/components/DialogMessage";
 
+// Utils
+import Router from "./src/utils/Router";
+import store from "./src/utils/Store";
 import { registerComponent } from "./src/utils/RegisterComponent";
+import { registerHelpers } from "./src/utils/RegisterHelpers";
 
 registerComponent("Button", Button as any);
 registerComponent("Input", Input as any);
 registerComponent("Info", Info as any);
 registerComponent("DialogInfo", DialogInfo as any);
 registerComponent("LabelInput", LabelInput as any);
+registerComponent("Link", Link as any);
+registerComponent("Avatar", Avatar as any);
+registerComponent("Notice", Notice as any);
+registerComponent("DialogHeader", DialogHeader as any);
+registerComponent("Dialog", Dialog as any);
+registerComponent("Users", Users as any);
+registerComponent("DialogMessage", DialogMessage as any);
+registerHelpers();
 
-window.addEventListener("DOMContentLoaded", () => {
-  const root = document.querySelector("#app")!;
+(window as any).store = store;
 
-  const pages = {
-    home: new HomePage({ title: "Главная" }),
-    login: new LoginPage({ title: "Авторизация" }),
-    signin: new SignInPage({ title: "Регистрация" }),
-    error404: new ErrorPage({ text: "Не туда попали", error: 400 }),
-    error500: new ErrorPage({
-      text: "Что-то пошло не так",
-      error: 500,
-    }),
-    profile: new ProfilePage({ title: "Профиль" }),
-    profileEdit: new ProfileEditPage({
-      title: "Редактировать профиль",
-    }),
-    profileEditPass: new ProfileEditPassPage({ title: "Изменить пароль" }),
-    chat: new ChatPage({ title: "Чат", isChatSelected: false }),
-    chatSelected: new ChatPage({ title: "Чат", isChatSelected: true }),
-  };
+const authRedirectPaths = ["/", "/login"];
 
-  const getPage = () => {
-    const url = window.location.search;
+window.addEventListener("DOMContentLoaded", async () => {
+  Router.use("/", LoginPage)
+    .use("/login", LoginPage)
+    .use("/signup", RegisterPage)
+    .use("/profile", ProfilePage)
+    .use("/settings", SettingsPage)
+    .use("/404", ErrorPage)
+    .use("/messenger", MessengerPage)
+    .use("/profileEditPass", ProfileEditPassPage);
 
-    if (url) {
-      const formattedUrl = url.split("=")[1];
+  const authUser = await AuthController.fetchUser();
 
-      root.append(pages[formattedUrl].getContent()!);
-    } else {
-      root.append(pages.home.getContent()!);
+  if (authUser) {
+    Router.start();
+
+    if (authRedirectPaths.includes(window.location.pathname)) {
+      Router.go("/messenger");
     }
-  };
-
-  getPage();
+  } else {
+    Router.start();
+    Router.go("/login");
+  }
 });

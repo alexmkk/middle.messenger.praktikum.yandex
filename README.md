@@ -5,13 +5,19 @@
 Используется компонентный подход и шаблонизатор Handlebars, TypeScript, SCSS.
 Настроена валидация полей форм, а так же вывод данных с формы в консоль в виде объекта.
 
-Подключены eslint и prettier.
-
 ## Ссылка на приложение
 https://lambent-biscotti-653b27.netlify.app/
 
 ## Ссылка на PR
-https://github.com/alexmkk/middle.messenger.praktikum.yandex/pull/2
+https://github.com/alexmkk/middle.messenger.praktikum.yandex/pull/3
+
+Добавлено:
+- авторизация
+- изменение данных пользователя + аватара
+- создание и удаление чатов
+- добавление пользователей в чат
+- поиск чатов
+- поиск пользователей
 
 ## Команды для запуска
 - `npm run dev` - запуск версии для разработчика

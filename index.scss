@@ -1,54 +1,105 @@
 @use "src/styles/variables";
-@import "pages/Login/login";
-@import "pages/Error/error";
-@import "pages/Profile/profile";
-@import "pages/Chat/chat";
-@import "src/components/DialogInfo/dialogInfo";
+@import "src/pages/Login/login";
+@import "src/pages/Error/error";
+@import "src/pages/Profile/styles.module";
+@import "src/pages/Messenger/styles.module";
+@import "src/components/DialogInfo/styles.module";
 
 * {
-  padding: 0; margin: 0; }
+  padding: 0;
+  margin: 0;
+}
 
 body {
-  font-family: Verdana, serif; font-size: 14px; }
+  font-family: Verdana, serif;
+  font-size: 14px;
+}
 
 h1 {
-  font-size: 20px; line-height: 20px; margin: 20px; }
+  font-size: 20px;
+  line-height: 20px;
+  margin: 20px 0;
+}
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 div {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 input {
-  padding: 5px; }
+  padding: 5px;
+}
 
 ul {
   margin: 0 20px;
 
   li {
-    margin: 20px; } }
+    margin: 20px;
+  }
+}
 
 .wrapper {
-  min-height: 100vh; }
+  min-height: 100vh;
+}
 
 .flex-center {
-  display: flex; justify-content: center; align-items: center; }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
 
 .flex {
-  display: flex; }
+  display: flex;
+}
 
 .flex-auto {
-  flex: 1 1 auto; }
+  flex: 1 1 auto;
+}
 
 .flex-column {
-  display: flex; flex-direction: column; }
+  display: flex;
+  flex-direction: column;
+}
 
 .text-bold {
-  font-weight: 600; }
+  font-weight: 600;
+}
 
 .color-red {
-  color: variables.$color-red; }
+  color: variables.$color-red;
+}
 
 .input-error {
-  font-size: 10px; position: absolute; bottom: 4px; }
+  font-size: 10px;
+  position: absolute;
+  bottom: 4px;
+}
+
+#notification {
+  height: auto;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  transition: all 1s ease-out;
+
+  > div {
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    width: 200px;
+    margin: 10px 0;
+  }
+}
+
+.warning {
+  background: #dd3b3b;
+}
+
+.success {
+  background: #4b65ce;
+}

@@ -9,7 +9,7 @@ interface ILabelInputProps {
 
 export class LabelInput extends Block {
   constructor({ label = "", validation, ...props }: ILabelInputProps) {
-    super("label", {
+    super({
       ...props,
       label,
       onBlur: (e: FocusEvent) => {

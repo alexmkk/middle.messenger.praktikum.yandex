@@ -1,22 +1,22 @@
-<div class="dialogs__item flex">
-    <div class="dialogs__item__photo"></div>
-    <div class="dialogs__item__user">
-        <p class="text-bold">{{userName}}</p>
+<div class="{{styles.dialogs_item}} dialog_item {{#if isActiveChat}}active{{/if}}" id={{id}} >
+    <div class="{{styles.avatar}}"></div>
+    <div class="{{styles.title}}">
+        <p class="text-bold">{{title}}</p>
         {{#if isAnswer}}
             <span class="text-bold">Вы:</span>
         {{/if}}
-        <span class="preview-message">
-            {{previewMessage}}
+        <span class="{{styles.last_message}}">
+            {{last_message}}
         </span>
     </div>
-    <div class="dialogs__item__info flex-column">
-        <div class="dialogs__time">{{time}}</div>
-        {{#if notifications}}
-            <div class="dialogs__counter flex-center">
+    <div class="{{styles.info}} flex-column">
+        <div class="{{styles.time}}">{{time}}</div>
+        {{#if unread_count}}
+            <div class="{{styles.counter}} flex-center">
                 {{#if isManyNotifications}}
                     9+
                 {{else}}
-                    {{notifications}}
+                    {{unread_count}}
                 {{/if}}
             </div>
         {{/if}}

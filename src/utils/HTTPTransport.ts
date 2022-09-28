@@ -1,86 +1,95 @@
 import { queryString } from "./QueryString";
+import { RecordString } from "../types/types";
 
 enum Methods {
   GET = "GET",
   PUT = "PUT",
   POST = "POST",
   DELETE = "DELETE",
+  PATCH = "PATCH",
 }
 
 interface IOption {
-  method: Methods;
+  method?: Methods;
   data?: unknown;
-  timeout?: number;
-  headers?: Record<string, string>;
+  headers?: RecordString;
 }
 
+export const API_URL = "https://ya-praktikum.tech/api/v2";
+
 export class HTTPTransport {
-  get = (
-    url: string,
-    options: IOption = {
-      method: Methods.GET,
-    }
-  ) => {
-    const newUrl = url + queryString(options.data);
+  static API_URL = API_URL;
+  protected endpoint: string;
 
-    return this.request(newUrl, { ...options }, options.timeout);
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
+
+  public get = (url: string, options: IOption) => {
+    const newUrl = options.data ? url + queryString(options.data as RecordString) : url;
+
+    return this.request(newUrl, { ...options });
   };
 
-  put = (
-    url: string,
-    options: IOption = {
-      method: Methods.PUT,
-    }
-  ) => {
-    return this.request(url, { ...options }, options.timeout);
+  public put = (url: string, options: IOption) => {
+    return this.request(url, { ...options, method: Methods.PUT });
   };
 
-  post = (
-    url: string,
-    options: IOption = {
-      method: Methods.POST,
-    }
-  ) => {
-    return this.request(url, { ...options }, options.timeout);
+  public post = (url: string, options: IOption) => {
+    return this.request(url, { ...options, method: Methods.POST });
   };
 
-  delete = (
-    url: string,
-    options: IOption = {
-      method: Methods.DELETE,
-    }
-  ) => {
-    return this.request(url, { ...options }, options.timeout);
+  public delete = (url: string, options: IOption) => {
+    return this.request(url, { ...options, method: Methods.DELETE });
   };
 
-  request = (url: string, options: IOption = { method: Methods.GET }, timeout = 5000) => {
+  request = (url: string, options: IOption = { method: Methods.GET }): Promise<any> => {
     const { headers, data, method } = options;
+
+    const isFormData = headers?.["Content-Type"] === "multipart/form-data";
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
-      xhr.open(method || Methods.GET, url);
-      xhr.setRequestHeader("Content-Type", "text/plain");
+      xhr.open(method || Methods.GET, `${this.endpoint}${url}`);
+      if (!isFormData) {
+        xhr.setRequestHeader("Content-Type", "application/json");
+      }
 
       if (headers) {
         Object.entries(headers).forEach((item) => {
           const [key, value] = item;
-          xhr.setRequestHeader(key, value);
+          if (!isFormData) {
+            xhr.setRequestHeader(key, value);
+          }
         });
       }
 
-      xhr.timeout = timeout;
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
+      };
 
-      xhr.onabort = reject;
-      xhr.onerror = reject;
-      xhr.ontimeout = reject;
+      xhr.onabort = () => reject({ reason: "abort" });
+      xhr.onerror = () => reject({ reason: "network error" });
+      xhr.ontimeout = () => reject({ reason: "timeout" });
 
       xhr.onload = function () {
         resolve(xhr);
       };
 
+      xhr.withCredentials = true;
+      xhr.responseType = "json";
+
       if (method === Methods.GET || !data) {
         xhr.send();
+      } else if (isFormData) {
+        xhr.send(data as XMLHttpRequestBodyInit);
       } else {
         xhr.send(JSON.stringify(data));
       }

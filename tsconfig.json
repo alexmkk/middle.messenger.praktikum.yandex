@@ -5,6 +5,7 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "target": "es5"
   }
 }

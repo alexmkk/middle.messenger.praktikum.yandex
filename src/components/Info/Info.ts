@@ -6,9 +6,9 @@ interface IInfoProps {
   value: string;
 }
 
-export class Info extends Block {
+export class Info extends Block<IInfoProps> {
   constructor({ param, value }: IInfoProps) {
-    super("div", {
+    super({
       param,
       value,
     });
