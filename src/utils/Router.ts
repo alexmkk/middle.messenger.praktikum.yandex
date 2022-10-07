@@ -38,7 +38,6 @@ class Router {
     const route = this.getRoute(pathname);
 
     if (!route) {
-      this.go("/404");
       return;
     }
 
@@ -47,6 +46,7 @@ class Router {
     }
 
     this.currentRoute = route;
+
     route.render();
   }
 

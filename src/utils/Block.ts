@@ -7,23 +7,19 @@ export class Block<P extends Record<string, any> = any> {
     FLOW_CDM: "flow:component-did-mount",
     FLOW_CDU: "flow:component-did-update",
     FLOW_RENDER: "flow:render",
-  };
+  } as const;
 
   public id: string = uuidv4();
   protected props: P;
   protected children: Record<string, Block>;
   private _element: HTMLElement | null = null;
-  private _meta: { props: P };
+
   private eventBus: () => EventBus;
 
   constructor(propsWithChildren: P) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
-
-    this._meta = {
-      props,
-    };
 
     this.props = this._makePropsProxy(props);
     this.children = children;
@@ -88,13 +84,15 @@ export class Block<P extends Record<string, any> = any> {
     const props: P = {} as P;
     const children: Record<string, Block> = {};
 
-    Object.entries(childrenAndProps).forEach(([key, value]: [keyof P, any]) => {
-      if (value instanceof Block) {
-        children[key as string] = value;
-      } else {
-        props[key] = value;
-      }
-    });
+    if (childrenAndProps) {
+      Object.entries(childrenAndProps).forEach(([key, value]: [keyof P, any]) => {
+        if (value instanceof Block) {
+          children[key as string] = value;
+        } else {
+          props[key] = value;
+        }
+      });
+    }
 
     return {
       props,
@@ -182,3 +180,5 @@ export class Block<P extends Record<string, any> = any> {
     this.getContent()!.style.display = "none";
   }
 }
+
+export default Block;

@@ -2,7 +2,7 @@ import { Block } from "../../utils/Block";
 import template from "./register.hbs";
 import { getFormData } from "../../helpers/getFormData";
 import AuthController from "../../controllers/AuthController";
-import { ISignupData } from "../../api/AuthAPI";
+import { ISignupData } from "../../api/interfaces";
 
 export class RegisterPage extends Block {
   constructor() {
