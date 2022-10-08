@@ -1,9 +1,9 @@
-@use "src/styles/variables";
-@import "src/pages/Login/login";
-@import "src/pages/Error/error";
-@import "src/pages/Profile/styles.module";
-@import "src/pages/Messenger/styles.module";
-@import "src/components/DialogInfo/styles.module";
+@use "./styles/variables";
+@import "./pages/Login/login";
+@import "./pages/Error/error";
+@import "./pages/Profile/styles.module";
+@import "./pages/Messenger/styles.module";
+@import "./components/DialogInfo/styles.module";
 
 * {
   padding: 0;
