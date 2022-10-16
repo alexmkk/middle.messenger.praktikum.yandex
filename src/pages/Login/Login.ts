@@ -3,7 +3,7 @@ import template from "./login.hbs";
 
 import { getFormData } from "../../helpers/getFormData";
 import AuthController from "../../controllers/AuthController";
-import { ISigninData } from "../../api/AuthAPI";
+import { ISigninData } from "../../api/interfaces";
 
 export class LoginPage extends Block {
   constructor() {

@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "noImplicitAny": true,
     "noUnusedLocals": true,
@@ -6,6 +9,9 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "lib": ["esnext", "dom"],
-    "target": "es5"
+    "target": "es5",
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "forceConsistentCasingInFileNames": true
   }
 }

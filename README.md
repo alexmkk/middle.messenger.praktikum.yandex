@@ -6,10 +6,10 @@
 Настроена валидация полей форм, а так же вывод данных с формы в консоль в виде объекта.
 
 ## Ссылка на приложение
-https://lambent-biscotti-653b27.netlify.app/
+https://alex-messenger.herokuapp.com/
 
 ## Ссылка на PR
-https://github.com/alexmkk/middle.messenger.praktikum.yandex/pull/3
+https://github.com/alexmkk/middle.messenger.praktikum.yandex/pull/4
 
 Добавлено:
 - авторизация
@@ -25,4 +25,5 @@ https://github.com/alexmkk/middle.messenger.praktikum.yandex/pull/3
 - `npm run start` - запуск Express сервера для раздачи статичных файлов
 - `npm run lint` - запускает проверку ts и scss файлов
 - `npm run lint:fix` - автоматическое исправление ts и scss файлов
+- `npm run test` - запуск автотестов
 

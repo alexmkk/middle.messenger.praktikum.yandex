@@ -29,10 +29,9 @@ export class Route {
   render() {
     if (!this.block) {
       this.block = new this.blockClass({});
+
       render(this.query, this.block);
       return;
     }
-
-    this.block.show();
   }
 }

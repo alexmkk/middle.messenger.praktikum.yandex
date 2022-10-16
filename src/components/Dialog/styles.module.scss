@@ -7,11 +7,12 @@
 }
 
 .dialog-content {
-  padding: 10px 0;
+  padding: 10px;
   display: flex;
-  flex: 1;
+  flex: 1 1 500px;
   flex-direction: column;
   border-bottom: 1px solid variables.$color-gray-light;
+  overflow-y: auto;
 
   div {
     border-radius: 10px;

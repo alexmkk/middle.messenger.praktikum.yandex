@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import { PropsWithRouter, withRouter } from "../../hocs/withRouter";
 import { Block } from "../../utils/Block";
 
-interface ILinkProps extends PropsWithRouter {
+export interface ILinkProps extends PropsWithRouter {
   to: string;
   label: string;
   events?: {
